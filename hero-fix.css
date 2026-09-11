@@ -1,0 +1,18 @@
+/* Corrected hero: use the original Scott + Noody orbit artwork exactly. */
+.avatar-stage-original{max-width:620px;min-height:620px}
+.hero-orbit-glow{position:absolute;border-radius:50%;filter:blur(48px);opacity:.44;pointer-events:none}
+.hero-orbit-glow.glow-a{inset:12% 14% auto auto;width:44%;height:44%;background:radial-gradient(circle at 50% 50%,rgba(243,90,179,.48),rgba(243,90,179,0) 72%)}
+.hero-orbit-glow.glow-b{inset:auto auto 10% 10%;width:48%;height:48%;background:radial-gradient(circle at 50% 50%,rgba(101,198,239,.42),rgba(123,228,81,0) 74%)}
+.hero-orbit-lines{position:absolute;inset:14%;border-radius:50%;border:1px solid rgba(23,59,48,.08);transform:rotate(-12deg) scaleY(.84);pointer-events:none;box-shadow:0 0 0 44px rgba(255,255,255,.11),0 0 0 88px rgba(255,255,255,.06)}
+.avatar-hero{width:100%;aspect-ratio:1;filter:drop-shadow(0 30px 54px rgba(22,58,48,.12));z-index:8}
+.avatar-hero-frame{position:absolute;inset:0;overflow:visible;background:transparent;box-shadow:none;border:0}
+.avatar-hero-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;display:block;user-select:none;pointer-events:none;animation:heroFloat 5.8s ease-in-out infinite}
+.avatar-stage-original .avatar-glow{inset:14%;filter:blur(30px);opacity:.3}
+.avatar-stage-original .tap-ring{inset:10%;border-color:rgba(36,181,123,.18)}
+.avatar-stage-original .spark-a{left:18%;top:17%}.avatar-stage-original .spark-b{right:13%;top:23%}.avatar-stage-original .spark-c{left:16%;bottom:22%}
+.avatar-stage-original .micro-a{left:5%;bottom:14%}.avatar-stage-original .micro-b{right:3%;top:52%}
+@keyframes heroFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media(max-width:900px){.avatar-stage-original{max-width:430px;min-height:430px}}
+@media(max-width:600px){.avatar-stage-original{max-width:340px;min-height:340px}.avatar-stage-original .micro-a{left:1%;bottom:12%}.avatar-stage-original .micro-b{right:0;top:55%}}
+@media(max-height:740px) and (max-width:600px){.avatar-stage-original{max-width:285px;min-height:285px}}
+@media(prefers-reduced-motion:reduce){.avatar-stage-original .avatar-hero-frame img{animation:none}}
