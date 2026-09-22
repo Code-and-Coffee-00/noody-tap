@@ -234,28 +234,35 @@ body {
 
 @media (max-height: 740px) and (max-width: 600px) { .avatar-stage { max-width: 280px; } }
 
-
 /* ==========================================================================
-   Hero orbit refinement — products pulled into Scott, labels removed
+   Hero orbit v2 — tighter, moving, label-free
    ========================================================================== */
 .avatar-stage {
   max-width: 540px;
   overflow: visible;
+  perspective: none;
+  transform-style: flat;
 }
 
+/* Scott stays still and dominant while the Noody range moves around him. */
 .avatar-core {
-  width: 64%;
+  width: 69%;
   top: 51%;
-  z-index: 6;
+  z-index: 10;
 }
 
+/* The whole product system rotates around Scott. Keeping the orbit container
+   inset makes the products feel connected to him rather than pinned to the
+   edges of the page. */
 .product-arrangement {
   position: absolute;
-  inset: 0;
+  inset: 8%;
   pointer-events: none;
+  transform-origin: 50% 50%;
+  animation: noodyOrbitSpin 20s linear infinite;
+  z-index: 4;
 }
 
-/* Fine orbit lines visually tie the products back to the founder avatar. */
 .product-arrangement::before,
 .product-arrangement::after {
   content: "";
@@ -263,80 +270,119 @@ body {
   left: 50%;
   top: 50%;
   pointer-events: none;
-  border: 1px solid rgba(18,58,44,.11);
   border-radius: 50%;
-  transform-origin: center;
   z-index: 1;
 }
 .product-arrangement::before {
-  width: 82%;
-  height: 58%;
-  transform: translate(-50%,-50%) rotate(-15deg);
+  width: 96%;
+  height: 66%;
+  border: 1px solid rgba(18,58,44,.12);
+  transform: translate(-50%,-50%) rotate(-13deg);
 }
 .product-arrangement::after {
-  width: 62%;
-  height: 86%;
-  transform: translate(-50%,-50%) rotate(38deg);
+  width: 68%;
+  height: 98%;
+  border: 1px solid rgba(18,58,44,.08);
+  transform: translate(-50%,-50%) rotate(37deg);
 }
 
+/* No text pills in the orbit. Product identity comes from the pack itself. */
 .product-label {
   display: none !important;
 }
 
 .product-node {
+  position: absolute;
+  width: 19%;
+  height: auto;
+  aspect-ratio: auto;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 12px 17px rgba(18,58,44,.17));
   z-index: 8;
-  filter: drop-shadow(0 13px 18px rgba(18,58,44,.16));
+
+  /* Counter-rotate each bottle so the orbit moves but packs stay upright. */
+  animation: noodyOrbitCounter 20s linear infinite !important;
+  transform-origin: 50% 50%;
 }
+
 .product-node img {
+  display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
+  animation: noodyProductBob 4.4s ease-in-out infinite;
 }
+.product-node:hover img { scale: 1; }
 
-/* Tight radial arrangement: products now read as Scott's orbit, not page furniture. */
-.product-suds {
-  left: 2%;
-  top: 23%;
-  width: 15.5%;
-  transform: rotate(-7deg);
-}
 .product-sun {
-  left: 35%;
-  top: 0%;
-  width: 16.5%;
-  transform: rotate(3deg);
+  left: 40.5%;
+  top: -8%;
+  width: 20%;
 }
 .product-bedtime {
-  right: 4%;
-  top: 17%;
-  width: 14.5%;
-  transform: rotate(6deg);
+  right: -5%;
+  top: 21%;
+  width: 18.5%;
 }
 .product-calm {
-  right: 0%;
-  top: 53%;
-  width: 15.5%;
-  transform: rotate(8deg);
+  right: -2%;
+  bottom: 8%;
+  width: 19%;
 }
 .product-lotion {
   left: 9%;
-  top: 63%;
-  width: 15.5%;
-  transform: rotate(-8deg);
+  bottom: -2%;
+  width: 18.5%;
+}
+.product-suds {
+  left: -6%;
+  top: 25%;
+  width: 18.5%;
+}
+
+/* Slightly stagger the breathing motion so the five packs don't bob together. */
+.product-bedtime img { animation-delay: -.8s; }
+.product-calm img    { animation-delay: -1.7s; }
+.product-lotion img  { animation-delay: -2.5s; }
+.product-suds img    { animation-delay: -3.2s; }
+
+@keyframes noodyOrbitSpin {
+  to { transform: rotate(360deg); }
+}
+@keyframes noodyOrbitCounter {
+  to { transform: rotate(-360deg); }
+}
+@keyframes noodyProductBob {
+  0%,100% { translate: 0 0; }
+  50%     { translate: 0 -6px; }
 }
 
 @media (max-width: 900px) {
   .avatar-stage { max-width: 430px; }
-  .avatar-core { width: 65%; }
+  .avatar-core { width: 70%; }
+  .product-arrangement { inset: 7%; }
 }
 
 @media (max-width: 600px) {
   .avatar-stage { max-width: 350px; }
-  .avatar-core { width: 66%; }
+  .avatar-core { width: 72%; }
+  .product-arrangement { inset: 6%; }
 
-  .product-suds { left: 1%; top: 23%; width: 16%; }
-  .product-sun { left: 34%; top: 0%; width: 17%; }
-  .product-bedtime { right: 2%; top: 17%; width: 15%; }
-  .product-calm { right: -1%; top: 54%; width: 16%; }
-  .product-lotion { left: 7%; top: 64%; width: 16%; }
+  .product-sun     { left: 40%; top: -7%; width: 20%; }
+  .product-bedtime { right: -4%; top: 21%; width: 18%; }
+  .product-calm    { right: -2%; bottom: 9%; width: 18.5%; }
+  .product-lotion  { left: 8%; bottom: -1%; width: 18%; }
+  .product-suds    { left: -5%; top: 25%; width: 18%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-arrangement,
+  .product-node,
+  .product-node img {
+    animation: none !important;
+  }
 }
