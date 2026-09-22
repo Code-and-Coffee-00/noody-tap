@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#f8f6ee" />
+  <meta name="theme-color" content="#FBF9F2" />
   <meta name="color-scheme" content="light" />
   <title>Scott Glacken — Noody</title>
   <meta name="description" content="Meet Scott Glacken, Co-Founder of Noody. Save Scott's details, exchange yours, or talk retail and distribution." />
@@ -15,8 +15,11 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☺</text></svg>" />
   <link rel="dns-prefetch" href="//www.noody.co.nz" />
   <link rel="preconnect" href="https://www.noody.co.nz" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=ba30fd2b" />
-  <link rel="stylesheet" href="hero-fix.css?v=ba30fd2b" />
+  <link rel="preload" href="assets/fonts/laica-a.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/pp-mori-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="styles.css?v=b1" />
+  <link rel="stylesheet" href="hero-fix.css?v=b1" />
+  <link rel="stylesheet" href="brand.css?v=b1" />
 </head>
 <body>
   <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
@@ -26,11 +29,16 @@
       <div class="aurora aurora-a" aria-hidden="true"></div>
       <div class="aurora aurora-b" aria-hidden="true"></div>
       <div class="grain" aria-hidden="true"></div>
+      <div class="hero-chars" aria-hidden="true">
+        <span class="char char-1"></span>
+        <span class="char char-2"></span>
+        <span class="char char-3"></span>
+      </div>
 
       <header class="topbar shell">
         <a class="brand" href="https://www.noody.co.nz/" target="_blank" rel="noreferrer" aria-label="Noody website">
-          <span class="brand-mark" aria-hidden="true">☺</span>
-          <span>noody</span>
+          <span class="brand-char" aria-hidden="true"></span>
+          <svg class="brand-logo" viewBox="0 0 994.05 324.82" fill="currentColor" role="img" aria-label="Noody"><path d="m6.28,253.45v-12.78h33.21V111.77l-35.32,21.89L0,114.24l75.25-25.2v34.43c16.6-18.82,36.23-33.73,61.33-33.73,32.49,0,54.75,18.1,54.75,47.94v102.98h30.78v12.78h-96.71v-12.78h29.89v-97.3c0-18.82-13.9-31.26-34.93-31.26-18.83,0-32.93,7.46-45.1,19.18v109.37h27.74v12.78H6.28Zm809.79,25.92c0,33.02,26.31,45.46,44.77,45.46,21.04,0,35.07-12.43,43.93-35.16l71.25-183.23h18.04v-12.78h-67.88v12.78h34.32l-41.7,109.13-50.12-108.92,26.86-.2v-12.78h-88.09v12.78h23.12l71.99,149.86c-14.4,41.19-21.78,49.7-32.49,49.7-9.23,0-12.76-7.8-12.76-26.63m-457.85-109.37c0,55.4-43.19,87.35-89.7,87.35s-83.8-33.73-83.8-80.96c0-55.4,42.83-86.64,89.34-86.64s84.16,32.66,84.16,80.25Zm-43.28,13.48c-1.23-49.7-20.58-83.32-48.96-82.62-22.83.57-38.92,23.7-37.94,63.11,1.23,49.34,21.17,81.88,49.24,81.18,23.13-.57,38.64-22.28,37.66-61.68Zm469.48,28.35v20.76l-69.95,25.47v-35.85c-14.04,18.46-35.08,35.14-62.76,35.14-40.97,0-72.35-30.53-72.35-78.13,0-52.19,36.91-89.48,80.84-89.48,32.49,0,47.25,17.75,54.27,28.41V24.76l-37.71,20.65-6.21-17.5L788.74,0v232.59l36.91-20.76Zm-69.95-71.31c-4.44-11.71-18.79-34.8-47.15-34.8-31.43,0-49.19,28.77-49.19,61.43,0,42.26,19.47,65.7,53.64,65.7,14.69,0,31.42-7.81,42.7-20.24v-72.08Zm-159.02,29.48c0,55.4-43.19,87.35-89.7,87.35s-83.8-33.73-83.8-80.96c0-55.4,42.83-86.64,89.34-86.64s84.16,32.66,84.16,80.25Zm-43.28,13.48c-1.23-49.7-20.58-83.32-48.96-82.62-22.83.57-38.92,23.7-37.94,63.11,1.23,49.34,21.17,81.88,49.24,81.18,23.13-.57,38.64-22.28,37.66-61.68Z"/></svg>
         </a>
         <span class="trip-pill"><i></i>Kuala Lumpur · 2026</span>
       </header>
@@ -232,7 +240,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
 
-  <script src="config.js"></script>
-  <script src="app.js" defer></script>
+  <script src="config.js?v=b1"></script>
+  <script src="app.js?v=b1" defer></script>
 </body>
 </html>
