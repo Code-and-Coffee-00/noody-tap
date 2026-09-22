@@ -385,4 +385,10 @@ body {
   .product-node img {
     animation: none !important;
   }
+/* --- Hero actions -------------------------------------------------------- */
+/* Wholesale sits in the hero rather than below the fold: this trip is a
+   commercial one, so the distribution conversation should not be behind a
+   scroll. Base CSS only promotes the 3rd button to full width on mobile. */
+@media (max-width: 600px) {
+  .hero-actions .btn:nth-child(n+3) { grid-column: 1 / -1; }
 }

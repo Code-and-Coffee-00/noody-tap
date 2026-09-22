@@ -17,8 +17,8 @@
   <link rel="preconnect" href="https://www.noody.co.nz" crossorigin />
   <link rel="preload" href="assets/fonts/laica-a.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/pp-mori-regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=b3" />
-  <link rel="stylesheet" href="brand.css?v=b4" />
+  <link rel="stylesheet" href="styles.css?v=c2" />
+  <link rel="stylesheet" href="brand.css?v=c2" />
 </head>
 <body>
 
@@ -48,6 +48,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 10.7 6.8-4.3M8.6 13.3l6.8 4.3"/></svg>
             </button>
             <button class="btn btn-glass" id="exchangeOpen" type="button">Exchange details</button>
+            <button class="btn btn-sun btn-wholesale" id="wholesaleOpenHero" type="button">Wholesale &amp; distribution</button>
           </div>
 
           <div class="meta-line">
@@ -190,9 +191,9 @@
       </div>
       <div class="success-state" id="exchangeSuccess" hidden>
         <div class="success-orb">✦</div>
-        <h2>Lovely to meet you.</h2>
-        <p id="successCopy">Your details are ready for Scott.</p>
-        <a class="btn btn-primary btn-full" href="https://www.noody.co.nz/" target="_blank" rel="noreferrer">Open Noody ↗</a>
+        <h2 id="successTitle">Lovely to meet you.</h2>
+        <p id="successCopy">Your details are on their way to Scott.</p>
+        <a class="btn btn-primary btn-full" id="successCta" href="https://www.noody.co.nz/" target="_blank" rel="noreferrer">Open Noody ↗</a>
       </div>
     </section>
   </dialog>
@@ -212,7 +213,7 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="config.js?v=b3"></script>
-  <script src="app.js?v=b3" defer></script>
+  <script src="config.js?v=c2"></script>
+  <script src="app.js?v=c2" defer></script>
 </body>
 </html>
