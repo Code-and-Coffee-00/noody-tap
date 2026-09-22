@@ -233,3 +233,110 @@ body {
 }
 
 @media (max-height: 740px) and (max-width: 600px) { .avatar-stage { max-width: 280px; } }
+
+
+/* ==========================================================================
+   Hero orbit refinement — products pulled into Scott, labels removed
+   ========================================================================== */
+.avatar-stage {
+  max-width: 540px;
+  overflow: visible;
+}
+
+.avatar-core {
+  width: 64%;
+  top: 51%;
+  z-index: 6;
+}
+
+.product-arrangement {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Fine orbit lines visually tie the products back to the founder avatar. */
+.product-arrangement::before,
+.product-arrangement::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  pointer-events: none;
+  border: 1px solid rgba(18,58,44,.11);
+  border-radius: 50%;
+  transform-origin: center;
+  z-index: 1;
+}
+.product-arrangement::before {
+  width: 82%;
+  height: 58%;
+  transform: translate(-50%,-50%) rotate(-15deg);
+}
+.product-arrangement::after {
+  width: 62%;
+  height: 86%;
+  transform: translate(-50%,-50%) rotate(38deg);
+}
+
+.product-label {
+  display: none !important;
+}
+
+.product-node {
+  z-index: 8;
+  filter: drop-shadow(0 13px 18px rgba(18,58,44,.16));
+}
+.product-node img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Tight radial arrangement: products now read as Scott's orbit, not page furniture. */
+.product-suds {
+  left: 2%;
+  top: 23%;
+  width: 15.5%;
+  transform: rotate(-7deg);
+}
+.product-sun {
+  left: 35%;
+  top: 0%;
+  width: 16.5%;
+  transform: rotate(3deg);
+}
+.product-bedtime {
+  right: 4%;
+  top: 17%;
+  width: 14.5%;
+  transform: rotate(6deg);
+}
+.product-calm {
+  right: 0%;
+  top: 53%;
+  width: 15.5%;
+  transform: rotate(8deg);
+}
+.product-lotion {
+  left: 9%;
+  top: 63%;
+  width: 15.5%;
+  transform: rotate(-8deg);
+}
+
+@media (max-width: 900px) {
+  .avatar-stage { max-width: 430px; }
+  .avatar-core { width: 65%; }
+}
+
+@media (max-width: 600px) {
+  .avatar-stage { max-width: 350px; }
+  .avatar-core { width: 66%; }
+
+  .product-suds { left: 1%; top: 23%; width: 16%; }
+  .product-sun { left: 34%; top: 0%; width: 17%; }
+  .product-bedtime { right: 2%; top: 17%; width: 15%; }
+  .product-calm { right: -1%; top: 54%; width: 16%; }
+  .product-lotion { left: 7%; top: 64%; width: 16%; }
+}
