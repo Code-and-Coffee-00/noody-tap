@@ -385,10 +385,40 @@ body {
   .product-node img {
     animation: none !important;
   }
+}
+
 /* --- Hero actions -------------------------------------------------------- */
 /* Wholesale sits in the hero rather than below the fold: this trip is a
    commercial one, so the distribution conversation should not be behind a
    scroll. Base CSS only promotes the 3rd button to full width on mobile. */
 @media (max-width: 600px) {
   .hero-actions .btn:nth-child(n+3) { grid-column: 1 / -1; }
+}
+
+/* --- Short-viewport hero fit ---------------------------------------------
+   The orbit stage is 350px on mobile, which pushes the wholesale CTA below
+   the fold on every common phone height except the very tallest. Measured
+   with the CTA's own bounding box, not by eye. Tighten the copy rhythm and
+   step the stage down as the viewport gets shorter, so all four actions stay
+   reachable without scrolling. Roomy screens keep the full-size orbit. */
+@media (max-width: 600px) and (max-height: 900px) {
+  .topbar             { height: 56px; }
+  .hero-copy          { margin-top: 4px; }
+  .lede               { margin-top: 9px; }
+  .hero-actions       { margin-top: 11px; gap: 6px; }
+  .hero-actions .btn  { min-height: 47px; }
+  .meta-line          { margin-top: 7px; }
+  .hero-grid          { padding-bottom: 6px; min-height: calc(100svh - 74px); }
+  .avatar-stage       { max-width: 288px; }
+}
+@media (max-width: 600px) and (max-height: 780px) {
+  .avatar-stage { max-width: 252px; }
+}
+@media (max-width: 600px) and (max-height: 720px) {
+  .avatar-stage { max-width: 216px; }
+  .hero h1      { font-size: 46px; }
+  .lede         { font-size: 13px; }
+}
+@media (max-width: 600px) and (max-height: 650px) {
+  .avatar-stage { max-width: 188px; }
 }
