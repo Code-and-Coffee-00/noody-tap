@@ -154,11 +154,15 @@ body {
 .avatar-stage { perspective: none; transform-style: flat; max-width: 520px; }
 .product-arrangement { position: absolute; inset: 0; }
 
-.avatar-core { width: 46%; filter: none; transform: none; cursor: default; }
+/* The avatar is a transparent cut-out illustration, so it floats on the paper
+   with a soft shadow. No circular crop — that would clip the arms and hair. */
+.avatar-core { width: 54%; filter: none; transform: none; cursor: default; }
 .avatar-hero-frame { position: absolute; inset: 0; background: none; border: 0; box-shadow: none; }
 .avatar-hero-frame img {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: contain; border-radius: 50%;
+  object-fit: contain; object-position: center bottom;
+  border-radius: 0;
+  filter: drop-shadow(0 18px 24px rgba(18, 58, 44, .16));
   user-select: none; pointer-events: none;
 }
 
@@ -175,11 +179,14 @@ body {
 .product-node img { width: 100%; height: auto; object-fit: contain; }
 .product-node:hover img { scale: 1; }
 
-.product-calm    { left: 13%;  top: 1%; }
-.product-bedtime { right: 12%; top: 4%;  width: 15.5%; }
-.product-sun     { left: -1%;  top: 42%; width: 16%; }
-.product-lotion  { right: -1%; top: 48%; width: 15%; }
-.product-suds    { left: 38%;  bottom: 3%;  width: 16%; }
+/* The figure occupies the middle third and is cropped at the hip, so nothing
+   sits centre or bottom-centre — it would land on his forearms or his head.
+   Two flanking columns: three down the left, two set into the gaps at right. */
+.product-calm    { left: 2%;   top: 1%;   width: 13%; }
+.product-sun     { left: 0%;   top: 35%;  width: 13%; }
+.product-suds    { left: 2%;   top: 69%;  width: 12.5%; }
+.product-bedtime { right: 2%;  top: 15%;  width: 13%; }
+.product-lotion  { right: 0%;  top: 52%;  width: 12.5%; }
 
 .product-label {
   position: absolute;
@@ -216,11 +223,11 @@ body {
 @media (max-width: 600px) {
   .brand-logo { height: 22px; }
   .avatar-stage { max-width: 330px; }
-  .product-node { width: 19%; }
+  /* Keep the desktop widths: at 19% three bottles cannot stack in one
+     column without colliding. */
   .product-label { display: none; }
   /* The stage sits directly above the copy on mobile; keep the lowest bottle
      clear of the eyebrow rather than letting it overhang onto the text. */
-  .product-suds { bottom: 11%; }
   .hero-copy { margin-top: 16px; }
   .sheet-card { border-radius: var(--radius) var(--radius) 0 0; }
 }
