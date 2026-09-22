@@ -3,7 +3,6 @@
 
   const q = (s, root = document) => root.querySelector(s);
   const qa = (s, root = document) => [...root.querySelectorAll(s)];
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const toast = q('#toast');
   let toastTimer;
 
@@ -144,86 +143,13 @@
       ? 'Sent. Scott has your details.'
       : 'Saved on this device. Scott can connect a secure form endpoint before launch.';
     haptic([10, 35, 10]);
-    burst(24);
   });
 
   qa('[data-track]').forEach(el => el.addEventListener('click', () => track(el.dataset.track, { href: el.href || '' })));
-
-  function burst(count = 16) {
-    const layer = q('#confettiLayer');
-    const colors = ['#24b57b','#7be451','#f35ab3','#9a73dd','#65c6ef','#ffd94d'];
-    for (let i = 0; i < count; i++) {
-      const s = document.createElement('i');
-      s.className = 'confetti';
-      s.style.background = colors[i % colors.length];
-      s.style.setProperty('--x', `${(Math.random() - .5) * 500}px`);
-      s.style.setProperty('--y', `${(Math.random() - .65) * 460}px`);
-      s.style.setProperty('--r', `${(Math.random() - .5) * 720}deg`);
-      s.style.animationDelay = `${Math.random() * .08}s`;
-      layer.appendChild(s);
-      setTimeout(() => s.remove(), 1200);
-    }
-  }
-
-  const avatar = q('#avatarCore');
-  let taps = [];
-  avatar.addEventListener('click', () => {
-    const now = Date.now();
-    taps = [...taps.filter(t => now - t < 1900), now];
-    haptic(6);
-    avatar.animate([
-      { scale: '1' }, { scale: '.93' }, { scale: '1.04' }, { scale: '1' }
-    ], { duration: 420, easing: 'cubic-bezier(.2,.9,.2,1)' });
-    if (taps.length >= 5) {
-      taps = [];
-      burst(36);
-      haptic([8,25,8,25,15]);
-      showToast('Noody party mode ✦');
-    }
-  });
-
-  const stage = q('#avatarStage');
-  if (!reduceMotion) {
-    const move = (x, y) => {
-      const r = stage.getBoundingClientRect();
-      const mx = Math.max(-1, Math.min(1, (x - r.left - r.width / 2) / (r.width / 2)));
-      const my = Math.max(-1, Math.min(1, (y - r.top - r.height / 2) / (r.height / 2)));
-      stage.style.setProperty('--tilt-x', `${(-my * 5).toFixed(2)}deg`);
-      stage.style.setProperty('--tilt-y', `${(mx * 5).toFixed(2)}deg`);
-      stage.style.setProperty('--pax', `${(-mx * 10).toFixed(2)}px`);
-      stage.style.setProperty('--pay', `${(-my * 8).toFixed(2)}px`);
-      stage.style.setProperty('--pbx', `${(mx * 8).toFixed(2)}px`);
-      stage.style.setProperty('--pby', `${(my * 10).toFixed(2)}px`);
-    };
-    stage.addEventListener('pointermove', e => move(e.clientX, e.clientY));
-    stage.addEventListener('pointerleave', () => {
-      ['--tilt-x','--tilt-y'].forEach(v => stage.style.setProperty(v,'0deg')); ['--pax','--pay','--pbx','--pby'].forEach(v => stage.style.setProperty(v,'0px'));
-    });
-
-    window.addEventListener('deviceorientation', (e) => {
-      if (e.gamma == null || e.beta == null) return;
-      const mx = Math.max(-1, Math.min(1, e.gamma / 25));
-      const my = Math.max(-1, Math.min(1, (e.beta - 45) / 35));
-      stage.style.setProperty('--tilt-x', `${(-my * 4).toFixed(2)}deg`);
-      stage.style.setProperty('--tilt-y', `${(mx * 4).toFixed(2)}deg`);
-      stage.style.setProperty('--pax', `${(-mx * 8).toFixed(2)}px`);
-      stage.style.setProperty('--pay', `${(-my * 6).toFixed(2)}px`);
-      stage.style.setProperty('--pbx', `${(mx * 6).toFixed(2)}px`);
-      stage.style.setProperty('--pby', `${(my * 8).toFixed(2)}px`);
-    }, { passive: true });
-  }
 
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
   }, { threshold: .12 });
   qa('.reveal').forEach(el => io.observe(el));
-
-  const progress = q('#progressBar');
-  const onScroll = () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    progress.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
-  };
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 
 })();

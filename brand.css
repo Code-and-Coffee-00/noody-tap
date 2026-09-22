@@ -1,8 +1,9 @@
 /* ==========================================================================
    Noody brand layer — 2026 Brand Guidelines
-   Loaded last. Overrides the generic palette/type in styles.css + hero-fix.css
-   with the real Noody tokens, typefaces, wordmark and character motifs.
-   Palette: product colour is functional wayfinding, not decoration.
+   Loaded after styles.css. Supplies the real Noody typefaces, palette and
+   wordmark, and strips the generic decorative chrome the page shipped with:
+   aurora blobs, grain, glassmorphism, rainbow glows, sparkles, floating
+   chips, orbit rings and confetti. Type and product photography do the work.
    ========================================================================== */
 
 /* --- Typefaces ----------------------------------------------------------- */
@@ -11,23 +12,17 @@
 @font-face {
   font-family: "Laica A";
   src: url("assets/fonts/laica-a.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+  font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "PP Mori";
   src: url("assets/fonts/pp-mori-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+  font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "PP Mori";
   src: url("assets/fonts/pp-mori-medium.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
+  font-weight: 600; font-style: normal; font-display: swap;
 }
 
 /* --- Tokens -------------------------------------------------------------- */
@@ -39,7 +34,6 @@
   --ndy-blue:   #00AEEF; /* Bedtime Bestie */
   --ndy-yellow: #FFD100; /* Sun Balm       */
 
-  /* Soft washes — grounds are pastel, full strength is for accents only. */
   --wash-green:  #e8fbe3;
   --wash-pink:   #ffe9ed;
   --wash-lilac:  #f3ebff;
@@ -57,10 +51,10 @@
   --paper: #FBF9F2;
   --ink:   #123A2C;
   --muted: #5C7268;
-  --line:  rgba(18, 58, 44, .12);
+  --line:  rgba(18, 58, 44, .14);
 
-  --radius:       28px; /* media + panels  */
-  --radius-stage: 40px; /* large surfaces  */
+  --radius:       24px;
+  --radius-stage: 36px;
 }
 
 body {
@@ -68,7 +62,7 @@ body {
   font-weight: 400;
 }
 
-/* Display type. Laica A is the Noody voice — headings only, never body. */
+/* --- Typography ---------------------------------------------------------- */
 .hero h1,
 .brand-copy h2,
 .connect-heading h2,
@@ -77,25 +71,13 @@ body {
   font-weight: 400;
   letter-spacing: -.02em;
 }
-
 .hero h1 { line-height: .88; }
 
-/* Laica A has real weight in its strokes — the outline treatment the generic
-   build used reads as a webfont fallback artefact, so it goes solid lilac. */
-.hero h1 span {
-  color: var(--ndy-lilac);
-  -webkit-text-stroke: 0;
-}
+/* Solid, not outlined — the hollow treatment read as a webfont fallback. */
+.hero h1 span { color: var(--ndy-lilac); -webkit-text-stroke: 0; }
 
-.eyebrow,
-.role,
-.proofs span,
-.product-label,
-.micro-chip,
-.trip-pill,
-.scroll-cue,
-legend,
-.form-grid label {
+.eyebrow, .role, .proofs span, .product-label,
+.trip-pill, .scroll-cue, legend, .form-grid label {
   font-family: "PP Mori", sans-serif;
   font-weight: 600;
 }
@@ -107,181 +89,140 @@ legend,
 
 /* --- Wordmark ------------------------------------------------------------ */
 .brand { gap: 0; }
+.brand-logo { display: block; height: 26px; width: auto; color: var(--ink); }
 
-.brand-logo {
-  display: block;
-  height: 26px;
-  width: auto;
-  color: var(--ink);
+/* --- Flat ground --------------------------------------------------------- */
+/* The hero shipped with three stacked radial gradients, two animated blurred
+   "aurora" blobs and a noise overlay. Warm paper, nothing else. */
+.hero { background: var(--paper); }
+
+/* --- Surfaces ------------------------------------------------------------ */
+/* No glassmorphism. Solid surfaces with a hairline, which survives being
+   photographed, screenshotted and read in direct sun. */
+.btn-glass, .trip-pill, .connect-card, .sheet-card {
+  -webkit-backdrop-filter: none; backdrop-filter: none;
 }
 
-/* The character peeking out from behind the wordmark — 20% mischief. */
-.brand-char {
-  width: 22px;
-  height: 26px;
-  margin-right: 7px;
-  flex: none;
-  background: var(--ndy-green);
-  -webkit-mask: url("assets/brand/char-suds.svg") center / contain no-repeat;
-          mask: url("assets/brand/char-suds.svg") center / contain no-repeat;
-  transform: rotate(-6deg);
-  transition: transform .4s cubic-bezier(.2, .9, .2, 1);
+.btn-glass { background: #fff; border: 1px solid var(--line); box-shadow: none; }
+.btn-glass:hover { background: #fff; box-shadow: 0 6px 18px rgba(18, 58, 44, .07); }
+
+.trip-pill { background: #fff; border: 1px solid var(--line); box-shadow: none; color: var(--ink); }
+.trip-pill i { background: var(--ndy-green); box-shadow: none; }
+
+/* The pulsing halo on the status dot goes; it is a plain marker. */
+.pulse-dot { background: var(--ndy-green); }
+.pulse-dot:after { display: none; }
+
+.connect-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: none;
 }
-.brand:hover .brand-char { transform: rotate(6deg) translateY(-2px); }
+.connect-card:hover { box-shadow: 0 8px 22px rgba(18, 58, 44, .07); }
+.connect-card:nth-child(1) .connect-icon { background: var(--wash-green); border-color: transparent; }
+.connect-card:nth-child(2) .connect-icon { background: var(--wash-pink);  border-color: transparent; }
+.connect-card:nth-child(3) .connect-icon { background: var(--wash-blue);  border-color: transparent; }
+.connect-card:nth-child(4) .connect-icon { background: var(--wash-lilac); border-color: transparent; }
+
+.sheet-card {
+  background: var(--paper);
+  border: 0;
+  border-radius: var(--radius-stage) var(--radius-stage) 0 0;
+  box-shadow: 0 -20px 60px rgba(7, 34, 25, .18);
+}
+.form-grid input { border-radius: 14px; }
 
 /* --- Buttons ------------------------------------------------------------- */
 /* Brand green is bright. White on it fails contrast, so the primary pill is
    green with ink text — higher contrast and more on-brand than the old teal. */
-.btn-primary {
-  background: var(--ndy-green);
-  color: var(--ink);
-  box-shadow: 0 14px 30px rgba(68, 214, 44, .28);
-}
-.btn-primary:hover { box-shadow: 0 18px 38px rgba(68, 214, 44, .36); }
+.btn-primary { background: var(--ndy-green); color: var(--ink); box-shadow: none; }
+.btn-primary:hover { box-shadow: 0 8px 20px rgba(68, 214, 44, .3); }
 
-.btn-sun { background: var(--ndy-yellow); color: var(--ink); box-shadow: 0 16px 38px rgba(255, 209, 0, .22); }
+.btn-sun { background: var(--ndy-yellow); color: var(--ink); box-shadow: none; }
+.btn-sun:hover { box-shadow: 0 8px 20px rgba(255, 209, 0, .28); }
 
-.pulse-dot        { background: var(--ndy-green); }
-.pulse-dot:after  { border-color: var(--ndy-green); }
-.trip-pill i      { background: var(--ndy-green); box-shadow: 0 0 0 4px rgba(68, 214, 44, .2); }
-.progress span    { background: var(--ndy-green); }
-.wink             { color: var(--ndy-pink); }
-.lime             { color: var(--ndy-green); }
-.form-grid input:focus { border-color: var(--ndy-green); box-shadow: 0 0 0 4px rgba(68, 214, 44, .14); }
+.wink { color: var(--ndy-pink); }
+.lime { color: var(--ndy-green); }
+.form-grid input:focus { border-color: var(--ndy-green); box-shadow: 0 0 0 3px rgba(68, 214, 44, .16); }
 .interest-chips input:checked + span { background: var(--wash-green); border-color: var(--ndy-green); color: #1C6B12; }
-.success-orb { background: var(--ndy-green); color: var(--ink); }
+.success-orb { background: var(--ndy-green); color: var(--ink); animation: none; }
 
-/* --- Hero ground --------------------------------------------------------- */
-/* Soft pastel washes, not full-strength colour. */
-.hero {
-  background:
-    radial-gradient(circle at 82% 16%, rgba(0, 174, 239, .16), transparent 30%),
-    radial-gradient(circle at 8% 78%, rgba(193, 140, 255, .16), transparent 32%),
-    radial-gradient(circle at 50% 108%, rgba(68, 214, 44, .12), transparent 40%),
-    var(--paper);
+/* --- Hero composition ---------------------------------------------------- */
+/* A still, deliberate arrangement. The products were previously on a spinning
+   orbit plane with counter-rotation, ringed guides and blurred colour glows. */
+.avatar-stage { perspective: none; transform-style: flat; max-width: 520px; }
+.product-arrangement { position: absolute; inset: 0; }
+
+.avatar-core { width: 46%; filter: none; transform: none; cursor: default; }
+.avatar-hero-frame { position: absolute; inset: 0; background: none; border: 0; box-shadow: none; }
+.avatar-hero-frame img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; border-radius: 50%;
+  user-select: none; pointer-events: none;
 }
-.aurora-a { background: var(--ndy-green); }
-.aurora-b { background: var(--ndy-lilac); }
 
-.avatar-stage-orbit .glow-a { background: radial-gradient(circle, rgba(255, 65, 98, .34), transparent 72%); }
-.avatar-stage-orbit .glow-b { background: radial-gradient(circle, rgba(0, 174, 239, .32), transparent 74%); }
-.avatar-stage-orbit .tap-ring { border-color: rgba(68, 214, 44, .3); }
-
-/* Character motifs sitting behind the orbit — the layered composition the
-   brand system calls for, in place of the generic geometric rings. */
-.hero-chars {
+/* Products float on the paper — the photograph is the card, no box, no border. */
+.product-node {
   position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
+  width: 17%; height: auto; aspect-ratio: auto;
+  overflow: visible;
+  background: transparent; border: 0; border-radius: 0; box-shadow: none;
+  animation: none; transform: none;
+  filter: drop-shadow(0 14px 18px rgba(18, 58, 44, .14));
+  z-index: 5;
 }
-.hero-chars .char {
-  position: absolute;
-  opacity: .1;
-  animation: charDrift 17s ease-in-out infinite;
-}
-.hero-chars .char {
-  -webkit-mask-position: center; mask-position: center;
-  -webkit-mask-size: contain;    mask-size: contain;
-  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-}
-.hero-chars .char-1 {
-  width: 190px; height: 230px; left: -46px; top: 16%;
-  background: var(--ndy-lilac);
-  -webkit-mask-image: url("assets/brand/char-calm.svg"); mask-image: url("assets/brand/char-calm.svg");
-}
-.hero-chars .char-2 {
-  width: 150px; height: 190px; right: 4%; bottom: 10%; animation-delay: -6s;
-  background: var(--ndy-blue);
-  -webkit-mask-image: url("assets/brand/char-suds.svg"); mask-image: url("assets/brand/char-suds.svg");
-}
-.hero-chars .char-3 {
-  width: 120px; height: 150px; left: 32%; bottom: -22px; animation-delay: -11s;
-  background: var(--ndy-pink);
-  -webkit-mask-image: url("assets/brand/char-lotion.svg"); mask-image: url("assets/brand/char-lotion.svg");
-}
-@keyframes charDrift {
-  0%, 100% { transform: translateY(0) rotate(-3deg); }
-  50%      { transform: translateY(-18px) rotate(3deg); }
-}
+.product-node img { width: 100%; height: auto; object-fit: contain; }
+.product-node:hover img { scale: 1; }
 
-/* --- Product colour wayfinding ------------------------------------------- */
-/* Each orbiting product carries its own colour so the range reads at a glance. */
-.product-label { color: var(--ink); font-weight: 600; }
-.product-bedtime .product-label { background: var(--wash-blue);   box-shadow: 0 4px 14px rgba(0, 174, 239, .2); }
-.product-calm    .product-label { background: var(--wash-lilac);  box-shadow: 0 4px 14px rgba(193, 140, 255, .24); }
-.product-lotion  .product-label { background: var(--wash-pink);   box-shadow: 0 4px 14px rgba(255, 65, 98, .2); }
-.product-suds    .product-label { background: var(--wash-green);  box-shadow: 0 4px 14px rgba(68, 214, 44, .24); }
-.product-sun     .product-label { background: var(--wash-yellow); box-shadow: 0 4px 14px rgba(255, 209, 0, .26); }
+.product-calm    { left: 13%;  top: 1%; }
+.product-bedtime { right: 12%; top: 4%;  width: 15.5%; }
+.product-sun     { left: -1%;  top: 42%; width: 16%; }
+.product-lotion  { right: -1%; top: 48%; width: 15%; }
+.product-suds    { left: 38%;  bottom: 3%;  width: 16%; }
+
+.product-label {
+  position: absolute;
+  bottom: -6px; left: 50%; transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 4px 8px; border-radius: 999px;
+  background: #fff; border: 1px solid var(--line); box-shadow: none;
+  color: var(--ink); font-size: 9px; font-weight: 600;
+}
 
 /* --- Meet Noody ---------------------------------------------------------- */
 .brand-section { background: var(--ink); border-radius: var(--radius-stage) var(--radius-stage) 0 0; }
+.brand-section:before { display: none; } /* concentric ring decoration */
 .brand-copy > p:not(.eyebrow) { color: #BCD2C7; }
-.proofs span { border-color: rgba(255, 255, 255, .16); }
+.proofs span { border-color: rgba(255, 255, 255, .18); }
 
-/* Products float on their own colour wash — the photo is the card, no box. */
+/* Products float on the dark ground, no card, no blurred colour halo. */
 .pack { background: transparent; box-shadow: none; padding: 0; }
-/* The markup carries height="520", and nothing in the base CSS sets a height,
-   so that presentational attribute wins and each "square" pack renders ~2:1 —
-   593px tall inside a 390px container, painting over the CTAs above it. */
 .pack img {
-  height: auto;
+  height: auto; /* markup carries height="520" and nothing set a CSS height,
+                   so the attribute won and each "square" pack rendered ~2:1 */
   border-radius: var(--radius);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, .3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .28);
 }
 .pack span   { color: rgba(255, 255, 255, .62); padding-left: 2px; }
 .pack strong { color: #fff; padding-left: 2px; }
-.pack-green  { --pack-accent: var(--ndy-green); }
-.pack-pink   { --pack-accent: var(--ndy-pink); }
-.pack-purple { --pack-accent: var(--ndy-lilac); }
-.pack:before {
-  content: "";
-  position: absolute;
-  inset: -12% -8% 22%;
-  border-radius: 50%;
-  background: var(--pack-accent);
-  opacity: .22;
-  filter: blur(26px);
-  z-index: -1;
-}
 
-/* --- Connect ------------------------------------------------------------- */
-.connect-card { border-radius: var(--radius); }
-.connect-card:nth-child(1) .connect-icon { background: var(--wash-green);  border-color: transparent; }
-.connect-card:nth-child(2) .connect-icon { background: var(--wash-pink);   border-color: transparent; }
-.connect-card:nth-child(3) .connect-icon { background: var(--wash-blue);   border-color: transparent; }
-.connect-card:nth-child(4) .connect-icon { background: var(--wash-lilac);  border-color: transparent; }
+/* --- Motion -------------------------------------------------------------- */
+/* A short fade-up on first view is all that remains. */
+.reveal { transform: translateY(14px); transition-duration: .5s; }
 
-/* --- Sheets -------------------------------------------------------------- */
-.sheet-card { background: rgba(251, 249, 242, .98); border-radius: var(--radius-stage) var(--radius-stage) 0 0; }
-.form-grid input { border-radius: 16px; }
+@media (max-width: 900px) { .avatar-stage { max-width: 400px; } }
 
 @media (max-width: 600px) {
   .brand-logo { height: 22px; }
-  .brand-char { width: 19px; height: 22px; }
+  .avatar-stage { max-width: 330px; }
+  .product-node { width: 19%; }
+  .product-label { display: none; }
+  /* The stage sits directly above the copy on mobile; keep the lowest bottle
+     clear of the eyebrow rather than letting it overhang onto the text. */
+  .product-suds { bottom: 11%; }
+  .hero-copy { margin-top: 16px; }
   .sheet-card { border-radius: var(--radius) var(--radius) 0 0; }
-  .hero-chars .char-1 { width: 130px; height: 158px; left: -40px; }
-  .hero-chars .char-2 { width: 104px; height: 130px; }
-  .hero-chars .char-3 { display: none; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-chars .char { animation: none; }
-}
-
-/* --- Avatar -------------------------------------------------------------- */
-/* The source photo is a portrait on a pale blue disc set in a cream square.
-   That square reads as a hard box against the wash while everything else
-   floats, so it gets clipped back to the disc it was shot on. */
-.avatar-stage-orbit .avatar-hero-frame img {
-  border-radius: 50%;
-  filter: drop-shadow(0 26px 42px rgba(18, 58, 44, .2));
-}
-/* A soft brand ring instead of the generic rainbow conic glow. */
-.avatar-stage-orbit .avatar-glow {
-  inset: -3%;
-  background: conic-gradient(from 200deg, var(--ndy-blue), var(--ndy-lilac), var(--ndy-pink), var(--ndy-yellow), var(--ndy-green), var(--ndy-blue));
-  filter: blur(22px);
-  opacity: .28;
-}
+@media (max-height: 740px) and (max-width: 600px) { .avatar-stage { max-width: 280px; } }
