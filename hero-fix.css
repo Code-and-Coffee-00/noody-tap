@@ -34,9 +34,12 @@
   border-radius:999px;background:rgba(255,255,255,.8);backdrop-filter:blur(10px);
   font-size:8px;font-weight:800;color:var(--ink);box-shadow:0 4px 14px rgba(22,58,48,.08);
 }
-.avatar-stage-orbit .product-calm{left:1%;top:29%}
-.avatar-stage-orbit .product-lotion{right:0;top:7%}
-.avatar-stage-orbit .product-suds{left:38%;bottom:-1%}
+.avatar-stage-orbit .product-node{width:20%}
+.avatar-stage-orbit .product-bedtime{left:-1%;top:22%}
+.avatar-stage-orbit .product-calm{right:10%;top:0}
+.avatar-stage-orbit .product-lotion{right:-1%;top:38%}
+.avatar-stage-orbit .product-suds{left:27%;bottom:-3%}
+.avatar-stage-orbit .product-sun{left:0;bottom:14%}
 .avatar-stage-orbit .avatar-hero{
   width:43%;aspect-ratio:1;filter:drop-shadow(0 30px 54px rgba(22,58,48,.18));
   z-index:8;
@@ -63,7 +66,7 @@
 }
 @media(max-width:600px){
   .avatar-stage-orbit{max-width:340px;min-height:340px}
-  .avatar-stage-orbit .product-node{width:26%}
+  .avatar-stage-orbit .product-node{width:22%}
   .avatar-stage-orbit .product-label{display:none}
   .avatar-stage-orbit .micro-a{left:1%;bottom:12%}
   .avatar-stage-orbit .micro-b{right:0;top:55%}
