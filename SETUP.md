@@ -86,6 +86,20 @@ The good news is a tag costs about ten dollars and takes two minutes to set up.
 
 ### Buy (today — you fly in a few days)
 
+**Fastest: Mitre 10 MEGA Silverdale** has *WiZ NFC Tag 4-pack, $14.95*, aisle
+24 bay 1, click & collect today. These are sold for triggering smart-light
+scenes, but Mitre 10's own copy says the tags are "customizable" and that you
+"personalize" them — which means they ship writable, and at that price they
+will be ordinary NTAG chips rather than anything proprietary.
+
+Two conditions if you take that route:
+
+- **Do not open the WiZ app.** Go straight to NFC Tools. Letting the vendor
+  app set them up is the one way they might end up locked.
+- **Test one before you leave the car park.** Install NFC Tools first, write
+  the URL, tap it. If it takes, you are done for $15. If it refuses, drive on
+  to PB Tech or Jaycar, or order below.
+
 [Sparts NZ](https://sparts.nz/collections/nfc-products) courier daily from
 Auckland:
 
