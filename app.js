@@ -64,7 +64,10 @@
     'ORG:Noody Skincare',
     'TITLE:Co-Founder',
     'EMAIL;TYPE=INTERNET,WORK:scott@noody.co.nz',
+    'TEL;TYPE=CELL,VOICE:+64204726884',
     'URL:https://www.noody.co.nz/',
+    'URL:https://www.linkedin.com/in/scott-glacken-nz/',
+    'X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/scott-glacken-nz/',
     'NOTE:Met via Noody Malaysia 2026',
     'END:VCARD'
   ].join('\r\n');

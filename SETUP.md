@@ -71,6 +71,11 @@ Check GA4 **Realtime** after your first live tap to confirm it is landing.
 
 ## Still outstanding
 
-- **Your phone number and LinkedIn URL** are not in the vCard — I never had
-  them. Send them and it is a one-line change.
 - Apple/Google Wallet pass, and the printed card artwork, are not built.
+
+## Contact details now live
+
+`+64 20 472 6884` and `linkedin.com/in/scott-glacken-nz` are in the vCard, and
+WhatsApp and LinkedIn are both in the connect grid. WhatsApp is the primary
+button in the wholesale drawer, prefilled with a distribution opener — it is
+the default business channel in Malaysia, so it should outrank email there.
