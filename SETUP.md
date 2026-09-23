@@ -1,28 +1,22 @@
 # Noody Tap — what's left to switch on
 
-Three things need an action from you. None take more than five minutes.
-Do all three before you fly.
+The page itself is finished. What remains needs your hands, not more code.
 
 ---
 
-## 1. Lead capture — REQUIRED, or you collect nothing
+## 1. Lead capture — decided: prefilled email
 
-Right now the exchange form has nowhere to send to. It does not pretend
-otherwise: the visitor is told it could not send and is given a prefilled
-email they can fire off in one tap, so a lead is never silently lost. But
-that puts the work on them, which is not what you want in a meeting.
+Scott's call, Sept 2026: the expected volume on this trip does not justify a
+backend. So the exchange form does the useful part — collects name, company,
+email, phone and what they're interested in — then opens a prefilled email for
+them to send. One tap, no server, nothing to deploy or maintain.
 
-Follow **[lead-relay/README.md](lead-relay/README.md)** — paste the script
-into script.google.com, deploy it, copy the `/exec` URL, and put it in
-`config.js`:
+Nothing to do here. It works as-is.
 
-```js
-formEndpoint: 'https://script.google.com/macros/s/AKfy…/exec',
-```
-
-It runs in your own Google account, so no third party holds the contact
-details of people you meet. Test it once on the live card and confirm the
-email arrives.
+**If that changes**, `lead-relay/` has a Google Apps Script that emails you
+each lead directly, with retries. Deploy it, paste the `/exec` URL into
+`config.js` as `formEndpoint`, and the form switches to sending on its own —
+no other change needed. The code path is already written and tested.
 
 ---
 

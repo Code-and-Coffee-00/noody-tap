@@ -199,8 +199,11 @@
       page: location.href
     };
 
-    submitBtn().textContent = 'Sending…';
-    form.querySelector('button[type=submit]').disabled = true;
+    const hasEndpoint = !!(CFG.formEndpoint || '');
+    if (hasEndpoint) {
+      submitBtn().textContent = 'Sending…';
+      form.querySelector('button[type=submit]').disabled = true;
+    }
 
     const result = await deliver(record);
     track('exchange_submit', { interests: interests.join(','), delivered: result.ok });
@@ -216,15 +219,22 @@
       cta.href = 'https://www.noody.co.nz/';
       cta.target = '_blank';
     } else {
-      // Never claim a delivery that did not happen.
-      q('#successTitle').textContent = 'One more tap.';
-      q('#successCopy').textContent = result.reason === 'network'
-        ? 'The connection dropped before that sent. Open it as an email and it will reach Scott.'
-        : 'Send these straight to Scott instead — it takes one tap.';
+      /* With no endpoint configured this is the intended route, not a failure,
+         so it should not read like one. The form has already done the useful
+         part — structuring the details and capturing what they're interested
+         in — and this hands the finished email over ready to send. */
       const cta = q('#successCta');
-      cta.textContent = 'Email my details ↗';
+      cta.textContent = 'Send to Scott ↗';
       cta.href = fallbackMailto(record);
       cta.removeAttribute('target');
+
+      if (result.reason === 'network') {
+        q('#successTitle').textContent = 'One more tap.';
+        q('#successCopy').textContent = 'The connection dropped before that sent — this opens it as an email instead.';
+      } else {
+        q('#successTitle').textContent = 'Almost there.';
+        q('#successCopy').textContent = 'Your email app will open with everything filled in. Hit send and Scott has it.';
+      }
     }
 
     haptic([10, 35, 10]);
