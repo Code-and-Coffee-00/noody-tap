@@ -74,35 +74,34 @@ Check GA4 **Realtime** after your first live tap to confirm it is landing.
 
 ---
 
-## 4. Printed cards — the backup that will get used
+## 4. The QR — no printing needed
 
-Lingy asked everyone to bring business cards and info sheets. At a 15,000-person
-show you will meet people whose NFC is off, whose phone is flat, or who just
-want something for their pocket.
-
-Artwork is generated, not hand-drawn:
+Two images. Save both to your phone.
 
 ```
-python3 tools/make-card.py
+python3 tools/make-screen-qr.py
 ```
 
-Output is `tools/out/noody-card.pdf` — 90 × 55 mm trim with 3 mm bleed, front
-and back, using the real wordmark, Laica A and PP Mori. The QR is ECC-Q at
-20 mm (0.41 mm per module), which is comfortably inside print spec.
+- **`tools/out/noody-qr-show.png`** — save to Photos and Favourite it. This is
+  the one you hold up. Noody wordmark, big QR, your name underneath.
+- **`tools/out/noody-qr-lockscreen.png`** — set as your iPhone lock-screen
+  wallpaper. The QR sits below where the clock lands, so you can show it
+  without unlocking your phone at all.
 
-**The script refuses to run until the DNS record exists.** That is deliberate:
-generating a QR for a hostname that does not resolve gives you a box of dead
-cards. So the order is DNS → generate → print.
+Scanning off a screen works fine, and this is actually more reliable than a
+printed card because the code is physically bigger. Verified by decoding the
+rendered images down to 20% scale and with simulated glare across them.
 
-If you run out of time for `scott.noody.co.nz`, generate against the working
-URL instead and accept the vendor-branded link on this one print run:
+Two things that will beat every precaution in the code, both on your phone:
 
-```
-python3 tools/make-card.py --url "https://code-and-coffee-00.github.io/noody-tap/?utm_source=qr"
-```
+1. **Turn screen brightness up, and turn auto-brightness OFF.** A dimmed
+   screen is the single most common reason a screen QR fails to scan.
+2. If you use the lock-screen one, turn off the wallpaper **Depth Effect** and
+   perspective zoom when you set it, or iOS will crop into the QR.
 
-Before sending to print, open the PDF on screen and scan the QR with your own
-phone. Thirty seconds, and it is the one check no amount of code can do for you.
+Printed cards are still available if you change your mind —
+`python3 tools/make-card.py` generates 90 × 55 mm artwork, front and back. But
+you do not need them for the QR to work.
 
 ## Still outstanding
 
