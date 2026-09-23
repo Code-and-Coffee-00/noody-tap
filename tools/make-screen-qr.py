@@ -28,7 +28,7 @@ OUT = ROOT / 'tools' / 'out'
 CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
 ap = argparse.ArgumentParser()
-ap.add_argument('--url', default='https://code-and-coffee-00.github.io/noody-tap/?utm_source=qr')
+ap.add_argument('--url', default='https://scott.noody.co.nz/?utm_source=qr')
 args = ap.parse_args()
 OUT.mkdir(parents=True, exist_ok=True)
 

@@ -20,28 +20,20 @@ no other change needed. The code path is already written and tested.
 
 ---
 
-## 2. Custom domain — scott.noody.co.nz
+## 2. Custom domain — done
 
-**I have deliberately not committed the `CNAME` file yet.** Adding it before
-DNS exists makes GitHub Pages redirect the working github.io URL to a domain
-that does not resolve, which would take the card offline. So: DNS first.
+Live on **https://scott.noody.co.nz** with enforced HTTPS.
 
-**Add this record at whoever hosts noody.co.nz DNS:**
+- DNS: `CNAME` `scott` -> `code-and-coffee-00.github.io`, at Hostinger.
+- The old `code-and-coffee-00.github.io/noody-tap/` address still works and
+  redirects here, query string intact — anything already carrying the old URL
+  keeps landing.
+- The page is `noindex, nofollow`, so it stays out of search. It is not
+  private: anyone with the link can open it, which is the point.
 
-| Type  | Name    | Value                          | TTL   |
-|-------|---------|--------------------------------|-------|
-| CNAME | `scott` | `code-and-coffee-00.github.io` | 1 hour |
-
-Note the value has no `https://` and no trailing slash, and it is the
-*account* domain, not the repo path.
-
-Tell me once it's added. I'll confirm it has propagated, commit the `CNAME`
-file, and enable enforced HTTPS. Certificate issue takes a few more minutes
-after that, so this is the one to start now.
-
-Why a subdomain rather than `noody.co.nz/scott`: Shopify would serve that as
-a 301, and browsers cache 301s hard — which destroys the whole point of being
-able to re-point the card later without reprinting it.
+Optional: a URL redirect in Shopify (Online Store -> Navigation -> URL
+Redirects) from `/scott` to `https://scott.noody.co.nz` lets you say
+"noody.co.nz/scott" out loud. The address bar still ends on the subdomain.
 
 ---
 
@@ -52,6 +44,9 @@ afterwards you can tell whether people tapped or scanned:
 
 - **NFC chip:** `https://scott.noody.co.nz/?utm_source=nfc`
 - **Printed QR:** `https://scott.noody.co.nz/?utm_source=qr`
+
+The shorter domain also made the QR meaningfully easier to scan: it dropped
+from version 6 to version 4, so the modules are 0.49mm instead of 0.41mm.
 
 The campaign no longer needs to be in the URL — the page fills in
 `malaysia_2026` automatically when the source is `nfc` or `qr`. Shorter URL
@@ -111,7 +106,7 @@ them the same day.
 3. Enter exactly:
 
    ```
-   https://code-and-coffee-00.github.io/noody-tap/?utm_source=nfc
+   https://scott.noody.co.nz/?utm_source=nfc
    ```
 
    `utm_source=nfc` is what separates taps from QR scans in your analytics.
