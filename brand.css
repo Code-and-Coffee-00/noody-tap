@@ -203,16 +203,18 @@ body {
 .brand-copy > p:not(.eyebrow) { color: #BCD2C7; }
 .proofs span { border-color: rgba(255, 255, 255, .18); }
 
-/* Products float on the dark ground, no card, no blurred colour halo. */
-.pack { background: transparent; box-shadow: none; padding: 0; }
-.pack img {
-  height: auto; /* markup carries height="520" and nothing set a CSS height,
-                   so the attribute won and each "square" pack rendered ~2:1 */
-  border-radius: var(--radius);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, .28);
+/* One photograph, not a scrapbook of three. Most of the PDP library carries
+   ingredient-claim or how-to text burnt into the image — "magnesium supports
+   restful sleep", "kawakawa calms inflammation", before/after eczema pairs —
+   none of which is substantiated. Only untitled photography is used here. */
+.brand-photo {
+  margin: 0;
+  border-radius: var(--radius-stage);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, .3);
 }
-.pack span   { color: rgba(255, 255, 255, .62); padding-left: 2px; }
-.pack strong { color: #fff; padding-left: 2px; }
+.brand-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* --- Motion -------------------------------------------------------------- */
 /* A short fade-up on first view is all that remains. */
@@ -469,10 +471,10 @@ body {
 
 .range-item {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  align-items: center;
-  gap: 40px;
-  padding: 34px 46px 34px 34px;
+  grid-template-columns: 46% 1fr;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
   border-radius: var(--radius-stage);
   background: var(--wash);
   border: 0;
@@ -484,19 +486,14 @@ body {
 .theme-blue   { --accent: var(--ndy-blue);   --wash: var(--wash-blue); }
 .theme-yellow { --accent: var(--ndy-yellow); --wash: var(--wash-yellow); }
 
-/* Alternate the side the bottle sits on so the eye travels down the page. */
-.range-item:nth-child(even) { grid-template-columns: 1fr 300px; padding: 34px 34px 34px 46px; }
+/* Alternate the side the photograph sits on so the eye travels down the page. */
+.range-item:nth-child(even) { grid-template-columns: 1fr 46%; }
 .range-item:nth-child(even) .range-shot { order: 2; }
 
-.range-shot { display: grid; place-items: center; }
-.range-shot img {
-  height: 210px;
-  width: auto;
-  max-width: 100%;
-  display: block;
-  filter: drop-shadow(0 22px 26px rgba(18, 58, 44, .16));
-}
+.range-shot { margin: 0; min-height: 300px; }
+.range-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+.range-copy { padding: 44px 48px; align-self: center; }
 .range-step {
   display: block;
   font-size: 10px;
@@ -510,12 +507,12 @@ body {
 .range-item h3 {
   font-family: "Laica A", ui-serif, Georgia, serif;
   font-weight: 400;
-  font-size: clamp(30px, 3.4vw, 42px);
+  font-size: clamp(30px, 3.4vw, 44px);
   line-height: 1;
   letter-spacing: -.025em;
   margin: 0 0 12px;
 }
-.range-item p { margin: 0; color: #3C5A4D; font-size: 16px; line-height: 1.55; max-width: 46ch; }
+.range-item p { margin: 0; color: #3C5A4D; font-size: 16px; line-height: 1.55; max-width: 44ch; }
 .range-note {
   display: inline-block;
   margin-top: 16px;
@@ -587,15 +584,13 @@ body {
   .range-item,
   .range-item:nth-child(even) {
     grid-template-columns: 1fr;
-    gap: 4px;
-    padding: 30px 24px 30px;
-    text-align: center;
     border-radius: var(--radius);
   }
   .range-item:nth-child(even) .range-shot { order: 0; }
-  .range-shot img { height: 150px; }
+  .range-shot { min-height: 0; aspect-ratio: 4 / 3; }
+  .range-copy { padding: 26px 24px 30px; }
   .range-item h3 { font-size: 30px; }
-  .range-item p { font-size: 14px; margin-inline: auto; }
+  .range-item p { font-size: 14px; }
   .trade-facts dd, .trade-docs li { font-size: 14px; }
   .trade-facts > div { grid-template-columns: 1fr; gap: 5px; padding: 15px 0; }
   .trade-actions { display: grid; }
