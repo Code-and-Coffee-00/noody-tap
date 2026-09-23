@@ -56,8 +56,13 @@ able to re-point the card later without reprinting it.
 Use **different** `utm_source` values for the chip and the printed QR, so
 afterwards you can tell whether people tapped or scanned:
 
-- **NFC chip:** `https://scott.noody.co.nz/?utm_source=nfc&utm_campaign=malaysia_2026`
-- **Printed QR:** `https://scott.noody.co.nz/?utm_source=qr&utm_campaign=malaysia_2026`
+- **NFC chip:** `https://scott.noody.co.nz/?utm_source=nfc`
+- **Printed QR:** `https://scott.noody.co.nz/?utm_source=qr`
+
+The campaign no longer needs to be in the URL — the page fills in
+`malaysia_2026` automatically when the source is `nfc` or `qr`. Shorter URL
+means a lower QR version, which means bigger modules and a scan that survives
+a phone held at arm's length in trade-show lighting.
 
 Both land on the same page. Analytics is live on Noody's existing GA4
 property (`G-NQLK5XR1TV`); filter by the `scott.noody.co.nz` hostname to
@@ -69,9 +74,39 @@ Check GA4 **Realtime** after your first live tap to confirm it is landing.
 
 ---
 
+## 4. Printed cards — the backup that will get used
+
+Lingy asked everyone to bring business cards and info sheets. At a 15,000-person
+show you will meet people whose NFC is off, whose phone is flat, or who just
+want something for their pocket.
+
+Artwork is generated, not hand-drawn:
+
+```
+python3 tools/make-card.py
+```
+
+Output is `tools/out/noody-card.pdf` — 90 × 55 mm trim with 3 mm bleed, front
+and back, using the real wordmark, Laica A and PP Mori. The QR is ECC-Q at
+20 mm (0.41 mm per module), which is comfortably inside print spec.
+
+**The script refuses to run until the DNS record exists.** That is deliberate:
+generating a QR for a hostname that does not resolve gives you a box of dead
+cards. So the order is DNS → generate → print.
+
+If you run out of time for `scott.noody.co.nz`, generate against the working
+URL instead and accept the vendor-branded link on this one print run:
+
+```
+python3 tools/make-card.py --url "https://code-and-coffee-00.github.io/noody-tap/?utm_source=qr"
+```
+
+Before sending to print, open the PDF on screen and scan the QR with your own
+phone. Thirty seconds, and it is the one check no amount of code can do for you.
+
 ## Still outstanding
 
-- Apple/Google Wallet pass, and the printed card artwork, are not built.
+- Apple/Google Wallet pass is not built.
 
 ## Contact details now live
 

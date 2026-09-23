@@ -22,10 +22,15 @@
      The NFC chip and the printed QR should carry different utm_source values
      so the trip can be read as "did the tap work, or did people scan?".      */
   const params = new URLSearchParams(location.search);
+  const source = params.get('utm_source') || 'direct';
   const campaign = {
-    source:   params.get('utm_source')   || 'direct',
+    source,
     medium:   params.get('utm_medium')   || '',
-    campaign: params.get('utm_campaign') || '',
+    // The card carries one campaign, so the chip and the printed QR only need
+    // to encode the source. Every character dropped from the URL lowers the
+    // QR version, and lower version means larger modules and a scan that
+    // survives a phone held at arm's length in bad light.
+    campaign: params.get('utm_campaign') || (source === 'qr' || source === 'nfc' ? 'malaysia_2026' : ''),
     content:  params.get('utm_content')  || ''
   };
   sessionStorage.setItem('noody_tap_campaign', JSON.stringify(campaign));

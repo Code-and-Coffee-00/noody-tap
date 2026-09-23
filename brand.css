@@ -596,3 +596,36 @@ body {
   .trade-actions { display: grid; }
   .trade-actions .btn { width: 100%; }
 }
+
+/* --- Orbit refinements --------------------------------------------------- */
+/* Three small changes, all reversible by deleting this block.
+
+   1. The guide ellipses were the one piece of generic geometry left in the
+      hero. Softened rather than removed — they give the orbit a path to sit
+      on without drawing attention to themselves.
+   2. Each bottle gets its own resting tilt. The counter-rotation held every
+      pack perfectly upright, which reads computed; a few degrees of variation
+      reads hand-arranged. Applied with the `rotate` property so it composes
+      with the existing `translate` bob instead of fighting it.
+   3. The orbit pauses while someone is looking at it. If a bottle catches a
+      buyer's eye they can hold it still rather than chase it round. */
+.product-arrangement::before { border-color: rgba(18, 58, 44, .07); }
+.product-arrangement::after  { border-color: rgba(18, 58, 44, .05); }
+
+.product-sun img     { rotate: -6deg; }
+.product-bedtime img { rotate:  5deg; }
+.product-calm img    { rotate: -3deg; }
+.product-lotion img  { rotate:  7deg; }
+.product-suds img    { rotate: -4deg; }
+
+.avatar-stage:hover .product-arrangement,
+.avatar-stage:hover .product-node,
+.avatar-stage:hover .product-node img,
+.avatar-stage:active .product-arrangement,
+.avatar-stage:active .product-node,
+.avatar-stage:active .product-node img { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .product-sun img, .product-bedtime img, .product-calm img,
+  .product-lotion img, .product-suds img { rotate: 0deg; }
+}
