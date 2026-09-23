@@ -698,3 +698,38 @@ body {
   .product-sun img, .product-bedtime img, .product-calm img,
   .product-lotion img, .product-suds img { rotate: 0deg; }
 }
+
+/* --- Buyer section, joined to the brand story ---------------------------- */
+/* The commercial facts now sit directly after "Made by parents who needed it
+   first" and ahead of the catalogue: at a trade show the buyer is scanning for
+   territory, registration and terms, and five detailed product cards are for
+   the person who has already decided to look closer.
+
+   Both sections are --ink, so they abut. Rather than stacking two panels that
+   look accidentally identical, they read as one dark passage split by a
+   hairline — story, then the numbers. */
+.trade-section--joined {
+  padding-top: 0;
+  border-radius: 0;
+  margin-top: -1px; /* close the sub-pixel seam between two identical fills */
+}
+.trade-section--joined .trade-head {
+  padding-top: 76px;
+  border-top: 1px solid rgba(255, 255, 255, .13);
+}
+/* The brand block above no longer needs to close itself off. */
+.brand-section { padding-bottom: 0; }
+.brand-section .brand-grid { padding-bottom: 96px; }
+
+/* The range now follows a dark block, so it takes the rounded shoulder that
+   the buyer panel used to carry. */
+.range-section {
+  border-radius: var(--radius-stage) var(--radius-stage) 0 0;
+  margin-top: -1px;
+  position: relative;
+}
+
+@media (max-width: 600px) {
+  .trade-section--joined .trade-head { padding-top: 56px; }
+  .brand-section .brand-grid { padding-bottom: 68px; }
+}
