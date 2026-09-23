@@ -495,7 +495,7 @@ body {
    library — one fewer thing to load on conference wifi and one fewer thing to
    break. Only untitled imagery is used; the rest of the PDP library has
    unsubstantiated claims burnt into the pixels. */
-.range-media { position: relative; min-height: 420px; }
+.range-media { position: relative; min-height: 520px; }
 .range-gallery {
   /* Absolute so it fills whatever height the grid row resolves to. height:100%
      collapses here because .range-media has no definite height on desktop. */
