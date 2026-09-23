@@ -115,7 +115,8 @@
     track(event);
   }
   q('#exchangeOpen').addEventListener('click', () => openSheet(exchangeSheet, 'exchange_open'));
-  q('#exchangeOpenBottom').addEventListener('click', () => openSheet(exchangeSheet, 'exchange_open'));
+  qa('#exchangeOpenBottom, #exchangeOpenTrade').forEach(b =>
+    b.addEventListener('click', () => openSheet(exchangeSheet, 'exchange_open')));
   qa('#wholesaleOpen, #wholesaleOpenHero').forEach(b =>
     b.addEventListener('click', () => openSheet(wholesaleSheet, 'wholesale_open')));
   qa('[data-close]').forEach(btn => btn.addEventListener('click', () => q(`#${btn.dataset.close}`).close()));

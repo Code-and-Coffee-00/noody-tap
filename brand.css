@@ -442,3 +442,140 @@ body {
   letter-spacing: -.03em;
 }
 .connect-icon .wa-mark { width: 16px; height: 16px; display: block; }
+
+/* --- The range ----------------------------------------------------------- */
+/* Every line here traces to the verified-claims document. Product-specific
+   substantiation does not transfer between SKUs — Calm Balm's patch test is
+   Calm Balm's alone, and Lotion Potion carries a fragrance-allergen warning,
+   so it deliberately carries no skin-kindness language at all. */
+.range-section { padding: 96px 0; background: var(--paper); }
+.range-head h2 {
+  font-family: "Laica A", ui-serif, Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(40px, 5.2vw, 64px);
+  line-height: .96;
+  letter-spacing: -.02em;
+  margin: 0;
+}
+.lime-ink { color: var(--ink); opacity: .55; }
+.range-intro { max-width: 520px; color: var(--muted); font-size: 17px; line-height: 1.55; margin: 20px 0 0; }
+
+.range-list {
+  list-style: none;
+  margin: 46px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.range-item {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px 24px 22px 30px;
+  overflow: hidden;
+}
+/* The colour bar is the product's own wayfinding colour. */
+.range-item:before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: var(--accent);
+}
+.theme-green  { --accent: var(--ndy-green); }
+.theme-pink   { --accent: var(--ndy-pink); }
+.theme-lilac  { --accent: var(--ndy-lilac); }
+.theme-blue   { --accent: var(--ndy-blue); }
+.theme-yellow { --accent: var(--ndy-yellow); }
+
+.range-step {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.range-item h3 {
+  font-family: "Laica A", ui-serif, Georgia, serif;
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: -.02em;
+  margin: 0 0 8px;
+}
+.range-item p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; max-width: 62ch; }
+.range-note {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 16%, #fff);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* --- For buyers ---------------------------------------------------------- */
+.trade-section { padding: 96px 0 104px; background: var(--ink); color: #F2F7F4; }
+.trade-head h2 {
+  font-family: "Laica A", ui-serif, Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(40px, 5.2vw, 64px);
+  line-height: .96;
+  letter-spacing: -.02em;
+  margin: 0;
+}
+.trade-facts { margin: 44px 0 0; display: grid; gap: 0; }
+.trade-facts > div {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 22px;
+  padding: 17px 0;
+  border-top: 1px solid rgba(255, 255, 255, .13);
+}
+.trade-facts > div:last-child { border-bottom: 1px solid rgba(255, 255, 255, .13); }
+.trade-facts dt { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ndy-green); }
+.trade-facts dd { margin: 0; font-size: 16px; line-height: 1.5; color: #D6E4DC; }
+
+.trade-docs { margin-top: 52px; }
+.trade-docs h3 {
+  font-size: 12px; font-weight: 600; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ndy-green); margin: 0 0 18px;
+}
+.trade-docs ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; max-width: 760px; }
+.trade-docs li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #D6E4DC;
+}
+.trade-docs li:before {
+  content: "";
+  position: absolute;
+  left: 4px; top: 9px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ndy-green);
+}
+.trade-honest {
+  margin: 30px 0 0;
+  max-width: 620px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #9FB8AC;
+}
+.trade-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+@media (max-width: 600px) {
+  .range-section { padding: 68px 0; }
+  .trade-section { padding: 68px 0 76px; }
+  .range-item { padding: 19px 20px 19px 26px; }
+  .range-item h3 { font-size: 22px; }
+  .range-item p, .trade-facts dd, .trade-docs li { font-size: 14px; }
+  .trade-facts > div { grid-template-columns: 1fr; gap: 5px; padding: 15px 0; }
+  .trade-actions { display: grid; }
+  .trade-actions .btn { width: 100%; }
+}
