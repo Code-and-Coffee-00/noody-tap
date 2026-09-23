@@ -495,7 +495,7 @@ body {
    library — one fewer thing to load on conference wifi and one fewer thing to
    break. Only untitled imagery is used; the rest of the PDP library has
    unsubstantiated claims burnt into the pixels. */
-.range-media { position: relative; min-height: 300px; }
+.range-media { position: relative; min-height: 420px; }
 .range-gallery {
   /* Absolute so it fills whatever height the grid row resolves to. height:100%
      collapses here because .range-media has no definite height on desktop. */
@@ -540,7 +540,7 @@ body {
 /* A single-image gallery needs no controls. */
 .range-dots:has(.range-dot:only-child) { display: none; }
 
-.range-copy { padding: 44px 48px; align-self: center; }
+.range-copy { padding: 48px 54px; align-self: center; }
 .range-step {
   display: block;
   font-size: 10px;
@@ -653,9 +653,9 @@ body {
     border-radius: var(--radius);
   }
   .range-item:nth-child(even) .range-media { order: 0; }
-  .range-media { min-height: 0; aspect-ratio: 4 / 3; }
+  .range-media { min-height: 0; aspect-ratio: 1 / 1; }
   .slide-pack { padding: 22px 22px 26px; }
-  .range-copy { padding: 26px 24px 30px; }
+  .range-copy { padding: 30px 24px 34px; }
   .range-ings { justify-content: center; }
   .range-ings-label { margin-top: 18px !important; }
   .range-item h3 { font-size: 30px; }
