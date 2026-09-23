@@ -7,6 +7,14 @@
   <meta name="color-scheme" content="light" />
   <title>Scott Glacken — Noody</title>
   <meta name="description" content="Meet Scott Glacken, Co-Founder of Noody Skincare — at Cosmobeauté Malaysia 2026 with the Asia New Zealand Foundation. Save his details, exchange yours, or talk retail and distribution." />
+  <!-- Keep this out of search. It is a card handed to specific people, not a
+       page for customers to find. Deliberately meta robots rather than a
+       robots.txt Disallow: Disallow stops crawlers reading the page at all,
+       which breaks WhatsApp and LinkedIn link previews and can still leave a
+       bare URL listed in results. noindex removes the listing and leaves the
+       Open Graph tags readable. -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
   <meta property="og:type" content="profile" />
   <meta property="og:site_name" content="Noody" />
   <meta property="og:url" content="https://code-and-coffee-00.github.io/noody-tap/" />
@@ -22,8 +30,8 @@
   <link rel="dns-prefetch" href="//cdn.shopify.com" />
   <link rel="preload" href="assets/fonts/laica-a.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/pp-mori-regular.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="styles.css?v=h2" />
-  <link rel="stylesheet" href="brand.css?v=h2" />
+  <link rel="stylesheet" href="styles.css?v=h3" />
+  <link rel="stylesheet" href="brand.css?v=h3" />
 </head>
 <body>
 
@@ -372,7 +380,7 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="config.js?v=h2"></script>
-  <script src="app.js?v=h2" defer></script>
+  <script src="config.js?v=h3"></script>
+  <script src="app.js?v=h3" defer></script>
 </body>
 </html>
