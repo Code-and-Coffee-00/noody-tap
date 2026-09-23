@@ -74,7 +74,66 @@ Check GA4 **Realtime** after your first live tap to confirm it is landing.
 
 ---
 
-## 4. The QR — no printing needed
+## 4. NFC — what it actually takes
+
+**Your phone cannot do this on its own.** An iPhone cannot emulate an NFC tag
+to send a URL to another phone: Apple restricts host card emulation to Wallet,
+and the third-party route added in iOS 17.4 is EEA-only and needs a special
+entitlement. Android's phone-to-phone NFC beam was removed in Android 10. So
+"tap my phone" is not a thing you can switch on — you need a physical tag.
+
+The good news is a tag costs about ten dollars and takes two minutes to set up.
+
+### Buy (today — you fly in a few days)
+
+[Sparts NZ](https://sparts.nz/collections/nfc-products) courier daily from
+Auckland:
+
+- **NFC Tags Ntag213 Adhesive 25mm, 10 pack — $9.99.** This is all you need; a
+  60-character URL uses a fraction of the 144 bytes.
+- Ntag215 sticker 10-pack is $16.99 if you want headroom.
+
+PB Tech and Jaycar also carry NFC tags if you would rather walk in and have
+them the same day.
+
+### Write the URL
+
+1. Install **NFC Tools** (free, iOS and Android).
+2. Write → Add a record → **URL/URI**.
+3. Enter exactly:
+
+   ```
+   https://code-and-coffee-00.github.io/noody-tap/?utm_source=nfc
+   ```
+
+   `utm_source=nfc` is what separates taps from QR scans in your analytics.
+4. Write, then hold a tag to the back of your phone.
+5. **Do not tick "lock tag".** Locking is permanent, and being able to
+   re-point the tag later without replacing it is the entire reason the URL is
+   yours rather than a vendor's.
+
+### Where to stick it
+
+**Not on your phone.** A tag sitting on your own phone's NFC antenna will get
+read by your own handset constantly.
+
+Better: **the back of your Cosmobeauté badge.** Everyone is wearing one, it is
+already in your hand, and "tap my badge" is a better line than "tap my phone".
+A notebook cover or a sample bottle works too. Stick a spare on each so you
+are never without one.
+
+If a surface is metal or has magnets in it, ordinary tags will not read — you
+need an on-metal tag for that.
+
+### Check it works
+
+Hold a phone to the tag. On iPhone XS and later the link banner appears
+automatically with the screen on and unlocked; older iPhones need the NFC
+reader in Control Centre. Most Android phones read it with the screen on.
+
+**Test with someone else's phone before you fly, not at the show.**
+
+## 5. The QR — no printing needed
 
 Two images. Save both to your phone.
 
