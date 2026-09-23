@@ -62,13 +62,14 @@
     'N:Glacken;Scott;;;',
     'FN:Scott Glacken',
     'ORG:Noody Skincare',
-    'TITLE:Co-Founder',
+    'TITLE:Co-Founder & Creative Director',
     'EMAIL;TYPE=INTERNET,WORK:scott@noody.co.nz',
     'TEL;TYPE=CELL,VOICE:+64204726884',
     'URL:https://www.noody.co.nz/',
     'URL:https://www.linkedin.com/in/scott-glacken-nz/',
+    'X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/noodyskincare',
     'X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/scott-glacken-nz/',
-    'NOTE:Met via Noody Malaysia 2026',
+    'NOTE:Met at Cosmobeauté Malaysia 2026, Kuala Lumpur.',
     'END:VCARD'
   ].join('\r\n');
 
@@ -103,8 +104,7 @@
       if (e?.name !== 'AbortError') showToast('Share unavailable on this browser');
     }
   }
-  q('#shareProfile').addEventListener('click', shareProfile);
-  q('#shareProfileBottom').addEventListener('click', shareProfile);
+  qa('#shareProfile, #shareProfileBottom').forEach(b => b.addEventListener('click', shareProfile));
 
   /* --- Sheets ------------------------------------------------------------ */
   const exchangeSheet = q('#exchangeSheet');
