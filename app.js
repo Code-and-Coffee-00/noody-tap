@@ -232,6 +232,29 @@
 
   qa('[data-track]').forEach(el => el.addEventListener('click', () => track(el.dataset.track)));
 
+  /* --- Product galleries -------------------------------------------------
+     Scroll-snap does the scrolling; this only keeps the dots in step with it
+     and lets them be tapped. Guarded so a single-image gallery does nothing. */
+  qa('.range-media').forEach(media => {
+    const gallery = q('.range-gallery', media);
+    const dots = qa('.range-dot', media);
+    if (!gallery || dots.length < 2) return;
+
+    const sync = () => {
+      const i = Math.round(gallery.scrollLeft / gallery.clientWidth);
+      dots.forEach((d, n) => d.setAttribute('aria-current', String(n === i)));
+    };
+    dots.forEach((dot, n) => dot.addEventListener('click', () => {
+      gallery.scrollTo({ left: n * gallery.clientWidth, behavior: 'smooth' });
+    }));
+    gallery.addEventListener('scroll', () => {
+      clearTimeout(gallery._t);
+      gallery._t = setTimeout(sync, 60);
+    }, { passive: true });
+    addEventListener('resize', sync, { passive: true });
+    sync();
+  });
+
   const io = new IntersectionObserver(entries => {
     entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); } });
   }, { threshold: .12 });
