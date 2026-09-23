@@ -142,7 +142,11 @@ body {
 .btn-sun { background: var(--ndy-yellow); color: var(--ink); box-shadow: none; }
 .btn-sun:hover { box-shadow: 0 8px 20px rgba(255, 209, 0, .28); }
 
-.wink { color: var(--ndy-pink); }
+/* Was --ndy-pink. That hex is a product colour and works on a Lotion Potion
+   pack, but as a lone line of text on cream it reads as an error message — and
+   at 3.22:1 it failed contrast anyway. Ink at 72% gives 5.22:1, which passes
+   AA and still sits back from the heading beside it. */
+.wink { color: var(--ink); opacity: .72; font-weight: 600; }
 .lime { color: var(--ndy-green); }
 .form-grid input:focus { border-color: var(--ndy-green); box-shadow: 0 0 0 3px rgba(68, 214, 44, .16); }
 .interest-chips input:checked + span { background: var(--wash-green); border-color: var(--ndy-green); color: #1C6B12; }
