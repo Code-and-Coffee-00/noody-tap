@@ -567,14 +567,7 @@ body {
   border-radius: 50%;
   background: var(--ndy-green);
 }
-.trade-honest {
-  margin: 30px 0 0;
-  max-width: 620px;
-  font-size: 16px;
-  line-height: 1.55;
-  color: #9FB8AC;
-}
-.trade-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.trade-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
 
 @media (max-width: 600px) {
   .range-section { padding: 66px 0 72px; }
