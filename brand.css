@@ -215,7 +215,7 @@ body {
   margin: 0;
   border-radius: var(--radius-stage);
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   box-shadow: 0 30px 60px rgba(0, 0, 0, .3);
 }
 .brand-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -737,3 +737,49 @@ body {
   .trade-section--joined .trade-head { padding-top: 56px; }
   .brand-section .brand-grid { padding-bottom: 68px; }
 }
+
+
+/* --- USPs ---------------------------------------------------------------- */
+/* Were bordered pills, which sat directly above two real buttons and read as a
+   row of controls you could press. An icon and a label is not a button. */
+.usps {
+  list-style: none;
+  margin: 30px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 30px;
+}
+.usps li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "PP Mori", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  color: #D6E4DC;
+}
+.usp-icon { width: 22px; height: 22px; flex: none; display: grid; place-items: center; }
+.usp-icon svg {
+  width: 22px; height: 22px;
+  fill: none;
+  stroke: var(--ndy-green);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 900px) {
+  .usps { justify-content: center; }
+}
+@media (max-width: 600px) {
+  .usps { gap: 12px 22px; }
+  .usps li { font-size: 12px; }
+}
+
+/* The brand headline carries a <br> intending two lines — "Made by parents /
+   who needed it first." But styles.css sizes it clamp(54px, 6vw, 82px) while
+   the copy column is only 550px at the 1180px shell, so it broke to four
+   ragged lines on every desktop width. Sized to hold the intended break. */
+.brand-copy h2 { font-size: clamp(38px, 4.2vw, 56px); }
