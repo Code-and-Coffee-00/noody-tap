@@ -26,11 +26,12 @@
   const campaign = {
     source,
     medium:   params.get('utm_medium')   || '',
-    // The card carries one campaign, so the chip and the printed QR only need
-    // to encode the source. Every character dropped from the URL lowers the
-    // QR version, and lower version means larger modules and a scan that
-    // survives a phone held at arm's length in bad light.
-    campaign: params.get('utm_campaign') || (source === 'qr' || source === 'nfc' ? 'malaysia_2026' : ''),
+    // Anything arriving with a source was handed over by Scott, so it belongs
+    // to this trip. That lets each tag carry its own source — ?utm_source=sample
+    // on a sample bottle, =badge on the lanyard, =card on a hand-out — so
+    // afterwards the numbers say which placement actually got tapped, without
+    // lengthening the URL. Only an uncredited visit stays uncredited.
+    campaign: params.get('utm_campaign') || (source === 'direct' ? '' : 'malaysia_2026'),
     content:  params.get('utm_content')  || ''
   };
   sessionStorage.setItem('noody_tap_campaign', JSON.stringify(campaign));
