@@ -226,15 +226,22 @@ legend{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform
 
 /* --- Responsive ---------------------------------------------------------- */
 @media (max-width:860px){
-  .z-bar{grid-template-columns:1fr auto;gap:12px;row-gap:10px}
-  .z-bar-l,.z-bar-r{flex-direction:row;gap:14px}
-  .z-bar-r{display:none}
-  .z-bar-cta{grid-column:2}
+  /* Four children in a two-column grid pushed the wordmark to the right and
+     wrapped the CTA onto a second row — a 106px-tall bar with the logo in the
+     wrong place. On a single-scroll card the nav links earn nothing, so they
+     go and the bar becomes what it should be: mark left, actions right. */
+  .z-bar{grid-template-columns:auto 1fr;gap:12px;padding:11px var(--pad)}
+  .z-bar-l,.z-bar-r{display:none}
+  .z-mark{grid-column:1;justify-self:start}
+  .z-bar-cta{grid-column:2;justify-self:end}
   .z-hero{grid-template-columns:1fr}
   .z-hero-copy{order:2;border-right:0;padding:44px var(--pad) 70px}
-  .z-hero-art{order:1;grid-template-rows:auto 62px;height:auto}
+  .z-hero-art{order:1;grid-template-rows:auto;height:auto}
   .z-band-a{aspect-ratio:4/3}
-  .z-doodle-hero{left:50%;transform:translateX(-50%);bottom:18px;width:74px}
+  .z-band-b{display:none}
+  /* Absolute + bottom:18px put the doodle straight on top of the Save Scott
+     button, which is the last thing in the centred column. In flow instead. */
+  .z-doodle-hero{position:static;transform:none;margin:24px auto 0;width:74px}
   .z-cards{grid-template-columns:1fr;gap:10px}
   .z-panel-in{grid-template-columns:1fr;gap:30px;padding:52px var(--pad)}
   .z-blob{margin-inline:auto;width:min(280px,72%)}
