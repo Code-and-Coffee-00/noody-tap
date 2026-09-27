@@ -266,7 +266,9 @@ body {
   pointer-events: none;
   transform-origin: 50% 50%;
   animation: noodyOrbitSpin 20s linear infinite;
-  z-index: 4;
+  /* In front of Scott (avatar-core is 10): the bottles pass over the figure
+     as they orbit. Scott's call, 2026-09-28. */
+  z-index: 11;
 }
 
 .product-arrangement::before,
