@@ -121,7 +121,7 @@
     track(event);
   }
   q('#exchangeOpen').addEventListener('click', () => openSheet(exchangeSheet, 'exchange_open'));
-  qa('#exchangeOpenBottom, #exchangeOpenTrade').forEach(b =>
+  qa('#exchangeOpenBottom, #exchangeOpenTrade, #exchangeOpenHero').forEach(b =>
     b.addEventListener('click', () => openSheet(exchangeSheet, 'exchange_open')));
   qa('#wholesaleOpen, #wholesaleOpenHero').forEach(b =>
     b.addEventListener('click', () => openSheet(wholesaleSheet, 'wholesale_open')));
