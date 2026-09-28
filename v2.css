@@ -1,12 +1,22 @@
 /* ==========================================================================
-   Noody Tap v2 — editorial, human pass (2026-09-28)
-   The first v2 leaned on devices that read as generated: typewriter caps on
-   every label and button, centred everything, a duplicated photo band, an
-   illustrated avatar, a three-equal-card grid, pill tags. This pass keeps the
-   bones (hairlines, dark panel, blob photo, scallop, giant wordmark) and swaps
-   the rest for things only Noody has: the family photo, a real portrait, a
-   note in Scott's voice, the hand-held product shots, a business-card back.
-   Small text is PP Mori in sentence case. Headings sit left.
+   Noody Tap v2 — editorial
+   Third pass, built from a full-page capture of the reference rather than
+   inference. The devices that actually carry that page, and that the first two
+   attempts missed entirely:
+
+     · MONOSPACE uppercase for every label, nav item, button and annotation.
+       This is the voice of all small text. Using a sans instead was the single
+       biggest miss.
+     · hairline rules and thin-bordered cards, not filled blocks
+     · photographs masked into overlapping-circle blobs
+     · a scalloped edge where the dark panel begins
+     · a numbered list rather than a stack of coloured rectangles
+     · a card floating on top of a full-bleed photograph
+     · the wordmark, huge, cropped by the bottom edge
+     · doodles in the empty space
+
+   Also corrects tells named in the Noody brief: no stacked colour rectangles,
+   no symmetric image+text repetition, no pill soup, one gesture per viewport.
    ========================================================================== */
 
 @font-face{font-family:"Laica A";src:url("assets/fonts/laica-a.woff2") format("woff2");font-weight:400;font-display:swap}
@@ -18,7 +28,8 @@
   --green:#44D62C; --lilac:#C18CFF; --yellow:#FFD100;
   --serif:"Laica A",ui-serif,Georgia,serif;
   --sans:"PP Mori",ui-sans-serif,-apple-system,sans-serif;
-    --pad:clamp(18px,4vw,60px);
+  --mono:ui-monospace,"SFMono-Regular","SF Mono",Menlo,Consolas,monospace;
+  --pad:clamp(18px,4vw,60px);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -28,9 +39,11 @@ img{max-width:100%;display:block}
 button,a,input{font:inherit}
 h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;margin:0}
 
-
-.z-mt{margin-top:26px}
-.z-body{font-size:15px;line-height:1.6;color:var(--soft);margin:0;max-width:46ch}
+/* The monospace voice. Every small label on the page. */
+.z-mono-sm{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--soft);margin:0 0 10px;line-height:1.7}
+.z-mt{margin-top:22px}
+.z-body{font-size:13.5px;line-height:1.7;color:var(--soft);margin:0;max-width:44ch}
 .z-center{margin-inline:auto;text-align:center}
 
 /* --- Bar ----------------------------------------------------------------- */
@@ -39,7 +52,8 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;marg
   padding:14px var(--pad);background:var(--paper);border-bottom:1px solid var(--rule)}
 .z-bar-l,.z-bar-r{display:flex;flex-direction:column;gap:2px}
 .z-bar-r{align-items:flex-end}
-.z-bar a{font-size:13px;color:var(--soft);text-decoration:none}
+.z-bar a{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--soft);text-decoration:none}
 .z-bar a:hover{color:var(--ink)}
 .z-mark{width:78px;color:var(--ink)}
 .z-mark svg{width:100%;height:auto;display:block}
@@ -48,46 +62,45 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;marg
   border:1px solid var(--rule);color:var(--ink);text-decoration:none}
 .z-round svg{width:15px;height:15px}
 
-/* --- Buttons: sentence case, one filled action per block ----------------- */
+/* --- Buttons: mono uppercase, hairline border ---------------------------- */
 .z-pill{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 22px;
   border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--ink);
-  font-size:14.5px;text-decoration:none;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
 .z-pill:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .z-pill-fill{background:var(--lilac);border-color:var(--lilac)}
 .z-pill-ghost{border-color:var(--rule-d);color:var(--paper)}
 .z-pill-ghost:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 .z-pill-full{width:100%;margin-top:9px}
-.z-link{border:0;background:none;padding:6px 2px;color:var(--ink);font-size:14.5px;cursor:pointer;
-  text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
-.z-link:hover{text-decoration-thickness:2px}
 
-/* --- Hero: copy left, one photograph ------------------------------------ */
-.z-hero{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:stretch;border-bottom:1px solid var(--rule)}
-.z-hero-copy{position:relative;display:flex;flex-direction:column;justify-content:center;
-  padding:72px var(--pad) 64px}
-.z-hero h1{font-size:clamp(36px,4.6vw,66px);line-height:1.02;letter-spacing:-.022em;margin:0 0 22px;max-width:11ch}
-.z-hero .z-body{margin-bottom:30px;max-width:30ch;font-size:16px}
-.z-hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
-.z-hero-art{margin:0;position:relative;min-height:460px}
-.z-hero-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%}
-.z-hero-art:after{content:"";position:absolute;inset:auto 0 0;height:90px;pointer-events:none;
-  background:linear-gradient(to top,rgba(20,28,24,.5),transparent)}
-.z-hero-art figcaption{position:absolute;z-index:1;left:16px;bottom:13px;font-size:12.5px;color:#fff}
+/* --- Hero: copy left, photo split into two offset bands ------------------ */
+.z-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);align-items:stretch}
+.z-hero-copy{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:64px var(--pad) 52px;border-right:1px solid var(--rule)}
+.z-hero h1{font-size:clamp(30px,3.4vw,46px);line-height:1.1;margin:0 0 20px}
+.z-hero .z-body{margin-bottom:26px;max-width:30ch}
+.z-hero-art{display:grid;grid-template-rows:1fr 88px;gap:6px}
+.z-band{margin:0;overflow:hidden;position:relative}
+.z-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.z-band-b img{object-position:center 78%}
 
 /* --- Doodles ------------------------------------------------------------- */
 .z-doodle{margin:0;position:absolute;pointer-events:none}
 .z-doodle img{width:100%;height:auto}
-.z-doodle-hero{width:70px;right:9%;top:48px;rotate:8deg}
+.z-doodle-hero{width:86px;left:var(--pad);bottom:26px}
+.z-doodle-range{width:78px;right:var(--pad);top:24px;position:absolute}
 
-/* --- A note from Scott --------------------------------------------------- */
-.z-note-sec{display:grid;grid-template-columns:auto minmax(0,560px);gap:34px;justify-content:center;
-  padding:84px var(--pad)}
-.z-portrait{margin:6px 0 0;width:112px;height:112px;border-radius:50%;overflow:hidden;background:var(--sand)}
-.z-portrait img{width:100%;height:100%;object-fit:cover}
-.z-letter h2{font-size:clamp(28px,3.2vw,40px);line-height:1.08;margin:0 0 18px}
-.z-letter p{font-size:16px;line-height:1.65;color:var(--ink);margin:0 0 14px;max-width:52ch}
-.z-letter .z-sign{font-family:var(--serif);font-size:30px;line-height:1;margin:26px 0 6px;rotate:-3deg;transform-origin:left}
-.z-letter .z-sign-role{font-size:13px;color:var(--soft);margin:0}
+/* --- Intro + bordered cards ---------------------------------------------- */
+.z-intro{position:relative;padding:72px var(--pad);text-align:center;border-bottom:1px solid var(--rule)}
+.z-avatar{margin:0 auto 26px;width:82px;height:82px;border-radius:14px;overflow:hidden;background:var(--sand)}
+.z-avatar img{width:100%;height:100%;object-fit:cover;object-position:center 12%}
+.z-intro h2{font-size:clamp(24px,3vw,40px);line-height:1.14;margin:0 0 18px}
+.z-intro .z-body{max-width:52ch;margin-bottom:44px}
+.z-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:left;margin-bottom:40px}
+.z-cards article{border:1px solid var(--rule);border-radius:10px;padding:22px 20px;background:transparent}
+.z-cards h4{font-size:20px;margin:0 0 12px}
+.z-mono-rule{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--soft);
+  margin:0;padding-top:24px;border-top:1px solid var(--rule)}
 
 /* --- Dark panel ---------------------------------------------------------- */
 .z-panel{background:var(--dark);color:#EDF2EE}
@@ -97,6 +110,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;marg
 .z-panel h4{font-family:var(--serif);font-size:19px;margin:0 0 8px}
 .z-panel-r h4:nth-of-type(2){margin-top:28px}
 .z-panel .z-body{color:#B9C9C0}
+.z-panel .z-mono-sm{color:rgba(237,242,238,.6)}
 
 /* Photograph masked into overlapping circles — the reference's signature. */
 .z-blob{margin:0;width:min(380px,86%);aspect-ratio:1;overflow:hidden;
@@ -109,54 +123,50 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;marg
   -webkit-mask:var(--m);mask:var(--m);
   -webkit-mask-composite:source-over;mask-composite:add}
 .z-blob img{width:100%;height:100%;object-fit:cover}
-/* --- Range: the hand-held shots, in a row you swipe --------------------- */
-.z-range{padding:80px 0 84px;border-bottom:1px solid var(--rule)}
-.z-head{margin:0 0 40px;padding:0 var(--pad);max-width:1180px}
-.z-head h2{font-size:clamp(28px,3.4vw,48px);line-height:1.06;letter-spacing:-.018em;margin:0 0 12px}
-.z-trade .z-head{padding:0;max-width:960px}
-.z-prods{list-style:none;margin:0;padding:0 var(--pad) 8px;display:grid;grid-auto-flow:column;
-  grid-auto-columns:minmax(240px,300px);gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;
-  scroll-padding-inline:var(--pad);scrollbar-width:thin}
-.z-prod{scroll-snap-align:start}
-.z-prod figure{margin:0 0 16px;aspect-ratio:4/5;overflow:hidden;border-radius:12px;background:var(--sand)}
-.z-prod img{width:100%;height:100%;object-fit:cover}
-.z-prod:nth-child(even) figure{margin-top:34px}
-.z-prod h3{font-size:24px;line-height:1.1;margin:0 0 2px}
-.z-role{font-size:13.5px;color:var(--soft);margin:0 0 10px;font-style:italic}
-.z-prod .z-body{font-size:14px;color:var(--ink)}
-.z-note{color:var(--soft)}
+.z-annot{position:absolute;right:6%;top:42%;font-family:var(--mono);font-size:9px;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(237,242,238,.65);text-align:right;line-height:1.7}
+
+/* --- Range: a numbered list, not coloured boxes -------------------------- */
+.z-range{position:relative;padding:72px var(--pad) 78px;border-bottom:1px solid var(--rule)}
+.z-head{text-align:center;margin-bottom:44px}
+.z-head h2{font-size:clamp(26px,3.2vw,44px);line-height:1.1;margin:0 0 14px}
+.z-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 52px;max-width:960px;margin-inline:auto}
+.z-list li{padding:26px 0;border-top:1px solid var(--rule)}
+.z-num{font-family:var(--serif);font-size:15px;color:var(--soft);display:block;margin-bottom:6px}
+.z-list h3{font-size:clamp(20px,2.2vw,26px);line-height:1.1;margin:0 0 6px}
+.z-list .z-mono-sm{margin-bottom:8px}
+.z-note{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:9px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink);
+  border:1px solid var(--rule);border-radius:999px;padding:5px 11px}
 
 /* --- Trade --------------------------------------------------------------- */
 .z-trade{padding:72px var(--pad) 78px;background:var(--sand)}
-.z-facts{display:grid;grid-template-columns:1fr 1fr;gap:0 52px;max-width:960px;margin:0 0 44px}
+.z-facts{display:grid;grid-template-columns:1fr 1fr;gap:0 52px;max-width:960px;margin:0 auto 44px}
 .z-facts > div{padding:18px 0;border-top:1px solid var(--rule)}
-.z-facts dt{font-size:13px;color:var(--soft);margin-bottom:5px}
+.z-facts dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--soft);margin-bottom:7px}
 .z-facts dd{font-family:var(--serif);font-size:clamp(15px,1.6vw,19px);line-height:1.35;margin:0}
-.z-docs{max-width:960px}
-.z-docs h4{font-size:20px;margin:0 0 14px}
+.z-docs{max-width:960px;margin-inline:auto}
 .z-docs ul{list-style:none;margin:0 0 26px;padding:0;display:grid;gap:7px;max-width:620px}
-.z-docs li{font-size:14.5px;line-height:1.55;color:var(--soft);padding-left:18px;position:relative}
+.z-docs li{font-size:13px;line-height:1.55;color:var(--soft);padding-left:18px;position:relative}
 .z-docs li:before{content:"";position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--soft)}
-.z-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.z-actions{display:flex;flex-wrap:wrap;gap:8px}
 
-/* --- Contact: the back of a business card ------------------------------- */
-.z-contact{display:grid;grid-template-columns:minmax(0,480px) minmax(0,360px);gap:56px;justify-content:center;
-  align-items:center;padding:88px var(--pad);background:var(--paper)}
-.z-card{background:#fff;border-radius:6px;padding:28px 28px 20px;
-  box-shadow:0 1px 0 rgba(34,48,42,.06),0 18px 40px -18px rgba(34,48,42,.28);rotate:-1.2deg}
-.z-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:26px}
-.z-card-name{font-family:var(--serif);font-size:24px;line-height:1.1;margin:0 0 4px}
-.z-card-role{font-size:13px;color:var(--soft);margin:0}
-.z-card-mark{width:74px;height:auto;color:var(--lilac);flex:none;margin-top:4px}
-.z-links{list-style:none;margin:0;padding:0}
+/* --- Contact: card over a full-bleed photograph -------------------------- */
+.z-contact{position:relative;display:grid;place-items:center;padding:78px var(--pad);isolation:isolate}
+.z-contact-bg{margin:0;position:absolute;inset:0;z-index:-1;overflow:hidden}
+.z-contact-bg img{width:100%;height:100%;object-fit:cover}
+.z-card{width:min(520px,100%);background:var(--paper);border:1px solid var(--rule);
+  border-radius:16px;padding:40px 30px 34px;text-align:center}
+.z-card h2{font-size:clamp(26px,3vw,36px);line-height:1.1;margin:0 0 12px}
+.z-card .z-body{margin-bottom:26px}
+.z-links{list-style:none;margin:0 0 20px;padding:0;text-align:left}
 .z-links li{border-top:1px solid var(--rule)}
-.z-links a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;
+.z-links li:last-child{border-bottom:1px solid var(--rule)}
+.z-links a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;
   text-decoration:none;color:var(--ink)}
-.z-links span{font-size:13px;color:var(--soft)}
-.z-links em{font-style:normal;font-size:15px}
-.z-links a:hover em{text-decoration:underline;text-underline-offset:3px}
-.z-contact-side h2{font-size:clamp(28px,3vw,40px);line-height:1.08;margin:0 0 14px}
-.z-contact-side .z-body{margin-bottom:24px}
+.z-links span{font-family:var(--serif);font-size:17px}
+.z-links em{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--soft)}
 
 /* --- Footer: scalloped edge, giant cropped wordmark ---------------------- */
 .z-foot{position:relative;background:var(--dark);color:var(--paper);margin-top:-1px}
@@ -167,11 +177,14 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;marg
   background:var(--dark)}
 .z-foot-in{padding:10px var(--pad) 0;text-align:center;overflow:hidden}
 .z-foot h2{font-size:clamp(22px,2.8vw,36px);line-height:1.16;margin:0 0 30px}
-.z-foot-contact{font-size:14px;color:rgba(255,252,242,.7);margin:0 0 22px}
+.z-foot-cols{display:flex;justify-content:center;gap:clamp(30px,8vw,120px);flex-wrap:wrap;margin-bottom:24px}
+.z-foot .z-mono-sm{color:rgba(255,252,242,.62)}
+.z-foot-contact{margin-bottom:22px!important}
 .z-foot-mark{margin:34px auto -2.2%;width:min(94%,900px);color:var(--lilac);opacity:.92}
 .z-foot-mark svg{width:100%;height:auto;display:block}
 .z-foot-fine{display:flex;justify-content:space-between;gap:16px;padding:0 0 16px;
-  font-size:12px;color:rgba(255,252,242,.5)}
+  font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,252,242,.5)}
 
 /* --- Sheets -------------------------------------------------------------- */
 .z-sheet{padding:0;border:0;background:transparent;width:100%;max-width:none;height:100%;max-height:none;overflow:hidden}
@@ -187,24 +200,25 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;marg
   border:1px solid var(--rule);background:transparent;color:var(--ink);font-size:18px;cursor:pointer}
 .z-sheet h2{font-size:clamp(24px,4vw,32px);line-height:1.1;margin:0 0 10px}
 .z-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px;text-align:left}
-.z-grid label{display:grid;gap:4px;font-size:13px;color:var(--soft)}
+.z-grid label{display:grid;gap:6px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
 .z-grid input{width:100%;height:44px;border:0;border-bottom:1px solid var(--rule);background:transparent;
   padding:0 2px;color:var(--ink);font-family:var(--sans);font-size:14px;letter-spacing:0;text-transform:none;outline:none}
 .z-grid input:focus{border-color:var(--ink)}
 fieldset{border:0;padding:0;margin:22px 0;text-align:left}
-legend{font-size:13px;color:var(--soft);margin-bottom:10px}
+legend{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:10px}
 .z-interests{display:flex;flex-wrap:wrap;gap:6px}
 .z-interests label input{position:absolute;opacity:0;pointer-events:none}
 .z-interests span{display:inline-flex;align-items:center;min-height:34px;border:1px solid var(--rule);
-  border-radius:999px;padding:0 14px;font-size:13.5px;cursor:pointer}
+  border-radius:999px;padding:0 12px;font-family:var(--mono);font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;cursor:pointer}
 .z-interests input:checked+span{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 .z-interests input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
-.z-err{font-size:13px;color:#B83247;margin:8px 0 0}
-.z-fine{font-size:12.5px;color:var(--soft);margin:12px 0 0}
+.z-err{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#B83247;margin:8px 0 0}
+.z-fine{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin:12px 0 0}
 .z-success{padding:18px 0 4px}
 .z-toast{position:fixed;z-index:1500;left:50%;bottom:max(20px,env(safe-area-inset-bottom));translate:-50% 30px;
   opacity:0;pointer-events:none;background:var(--ink);color:var(--paper);padding:11px 18px;border-radius:999px;
-  font-size:13px;transition:.3s}
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;transition:.3s}
 .z-toast.show{translate:-50% 0;opacity:1}
 
 .reveal{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
@@ -212,24 +226,29 @@ legend{font-size:13px;color:var(--soft);margin-bottom:10px}
 
 /* --- Responsive ---------------------------------------------------------- */
 @media (max-width:860px){
+  /* Four children in a two-column grid pushed the wordmark to the right and
+     wrapped the CTA onto a second row — a 106px-tall bar with the logo in the
+     wrong place. On a single-scroll card the nav links earn nothing, so they
+     go and the bar becomes what it should be: mark left, actions right. */
   .z-bar{grid-template-columns:auto 1fr;gap:12px;padding:11px var(--pad)}
   .z-bar-l,.z-bar-r{display:none}
   .z-mark{grid-column:1;justify-self:start}
   .z-bar-cta{grid-column:2;justify-self:end}
   .z-hero{grid-template-columns:1fr}
-  .z-hero-art{order:1;min-height:0;aspect-ratio:4/3}
-  .z-hero-copy{order:2;padding:40px var(--pad) 52px}
-  .z-doodle-hero{width:56px;right:var(--pad);top:-30px}
-  .z-note-sec{grid-template-columns:1fr;gap:20px;padding:60px var(--pad)}
-  .z-portrait{width:88px;height:88px;margin:0}
+  .z-hero-copy{order:2;border-right:0;padding:44px var(--pad) 70px}
+  .z-hero-art{order:1;grid-template-rows:auto;height:auto}
+  .z-band-a{aspect-ratio:4/3}
+  .z-band-b{display:none}
+  /* Absolute + bottom:18px put the doodle straight on top of the Save Scott
+     button, which is the last thing in the centred column. In flow instead. */
+  .z-doodle-hero{position:static;transform:none;margin:24px auto 0;width:74px}
+  .z-cards{grid-template-columns:1fr;gap:10px}
   .z-panel-in{grid-template-columns:1fr;gap:30px;padding:52px var(--pad)}
   .z-blob{margin-inline:auto;width:min(280px,72%)}
-  .z-range{padding:60px 0}
-  .z-prods{grid-auto-columns:74%}
-  .z-prod:nth-child(even) figure{margin-top:0}
-  .z-facts{grid-template-columns:1fr;gap:0}
-  .z-contact{grid-template-columns:1fr;gap:36px;padding:60px var(--pad)}
-  .z-contact-side{order:-1}
+  .z-annot{position:static;text-align:center;display:block;margin-top:14px}
+  .z-list,.z-facts{grid-template-columns:1fr;gap:0}
+  .z-doodle-range{position:static;margin:26px auto 0;width:68px}
+  .z-foot-cols{gap:22px;flex-direction:column}
   .z-foot-mark{margin-bottom:-1.4%}
 }
 @media (max-width:600px){
