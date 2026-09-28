@@ -815,3 +815,5 @@ body {
 /* Ingredient chips were centred on mobile while the note chip under them sat
    left, so each card had two alignments. One edge. */
 .range-ings { justify-content: flex-start !important; }
+
+.nowrap { white-space: nowrap; }
