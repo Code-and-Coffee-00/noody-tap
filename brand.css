@@ -817,3 +817,22 @@ body {
 .range-ings { justify-content: flex-start !important; }
 
 .nowrap { white-space: nowrap; }
+
+/* --- WhatsApp, always in reach (2026-09-28) -------------------------------
+   Malaysian business runs on WhatsApp; it was the third row of a list at the
+   bottom. Thumb-zone, bottom right, clear of the iOS home bar. */
+.wa-fab {
+  position: fixed; z-index: 900;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, calc(env(safe-area-inset-bottom) + 8px));
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 52px; padding: 0 18px 0 16px; border-radius: 999px;
+  background: var(--ndy-green); color: var(--ink);
+  border: 2px solid #fff; /* stays visible over the green Soft Suds photo */
+  font-weight: 600; font-size: 15px; text-decoration: none;
+  box-shadow: 0 10px 24px -8px rgba(18, 58, 44, .45);
+}
+.wa-fab svg { width: 22px; height: 22px; flex: none; }
+.wa-fab:active { transform: scale(.97); }
+/* The footer wraps its registration line; give it room above the button. */
+.connect-section footer { flex-wrap: wrap; padding-bottom: 72px; }
