@@ -1,14 +1,11 @@
 // Production configuration. Keep private API keys on a server, never here.
 window.NOODY_CONFIG = {
-  // Left empty deliberately. Scott's call, Sept 2026: for this trip the volume
-  // does not justify a backend, so the exchange form collects and structures
-  // the details, then hands the visitor a prefilled email to send. That is the
-  // intended route, not a fallback.
-  //
-  // If it ever is worth automating, dropping a Google Apps Script /exec URL in
-  // here switches the form to sending directly, with retries — no other change
-  // needed. See lead-relay/README.md.
-  formEndpoint: '',
+  // FormSubmit (Scott's call, 2026-09-28): the form emails him directly, no
+  // mail-app step for the visitor. Needs its one-time activation link clicked
+  // in scott@noody.co.nz; until then sends fail and the form falls back to the
+  // prefilled email. A Google Apps Script /exec URL also works here — see
+  // lead-relay/README.md. Empty = prefilled email only.
+  formEndpoint: 'https://formsubmit.co/ajax/scott@noody.co.nz',
 
   // Where the exchange email is addressed.
   notifyEmail: 'scott@noody.co.nz',

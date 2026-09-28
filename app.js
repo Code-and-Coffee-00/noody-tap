@@ -141,6 +141,18 @@
     for (let i = 0; i < backoff.length; i++) {
       if (backoff[i]) await wait(backoff[i]);
       try {
+        if (/formsubmit\.co/.test(endpoint)) {
+          // FormSubmit answers 200 even when it refuses (e.g. before the inbox
+          // has clicked its activation link), so trust only `success`.
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(formSubmitPayload(record))
+          });
+          const json = await res.json().catch(() => ({}));
+          if (res.ok && String(json.success) === 'true') return { ok: true };
+          continue;
+        }
         const res = await fetch(endpoint, {
           method: 'POST',
           // text/plain keeps this a CORS "simple request", so no preflight —
@@ -152,6 +164,24 @@
       } catch (_) { /* network dropped — retry */ }
     }
     return { ok: false, reason: 'network' };
+  }
+
+  // FormSubmit turns underscore keys into settings; the rest become the table
+  // in the email. Reply-to is the lead, so hitting reply answers them.
+  function formSubmitPayload(record) {
+    return {
+      _subject: `Noody — details from ${record.name}`,
+      _replyto: record.email,
+      _template: 'table',
+      _captcha: 'false',
+      Name: record.name,
+      Company: record.company || '—',
+      Email: record.email,
+      Phone: record.phone || '—',
+      'Interested in': record.interests.join(', '),
+      'Met via': record.source,
+      Page: record.page
+    };
   }
 
   function fallbackMailto(record) {

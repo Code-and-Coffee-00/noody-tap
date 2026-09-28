@@ -4,19 +4,18 @@ The page itself is finished. What remains needs your hands, not more code.
 
 ---
 
-## 1. Lead capture — decided: prefilled email
+## 1. Lead capture — FormSubmit (switched 2026-09-28)
 
-Scott's call, Sept 2026: the expected volume on this trip does not justify a
-backend. So the exchange form does the useful part — collects name, company,
-email, phone and what they're interested in — then opens a prefilled email for
-them to send. One tap, no server, nothing to deploy or maintain.
+The form now emails each lead straight to scott@noody.co.nz via FormSubmit
+(`config.js` -> `formEndpoint`). Reply-to is the lead, so hitting reply answers
+them. Three attempts with backoff; if all fail, the visitor gets the prefilled
+email instead, so no lead is lost.
 
-Nothing to do here. It works as-is.
+**One-time step:** click **Activate Form** in the FormSubmit email in
+scott@noody.co.nz. Until then every send falls back to the prefilled email.
 
-**If that changes**, `lead-relay/` has a Google Apps Script that emails you
-each lead directly, with retries. Deploy it, paste the `/exec` URL into
-`config.js` as `formEndpoint`, and the form switches to sending on its own —
-no other change needed. The code path is already written and tested.
+Prefer to keep leads inside Google? Deploy `lead-relay/` and put its `/exec`
+URL in `formEndpoint` instead. No other change needed.
 
 ---
 
