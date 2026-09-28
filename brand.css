@@ -785,3 +785,33 @@ body {
    the copy column is only 550px at the 1180px shell, so it broke to four
    ragged lines on every desktop width. Sized to hold the intended break. */
 .brand-copy h2 { font-size: clamp(38px, 4.2vw, 56px); }
+
+
+/* --- Refinement pass (2026-09-28) ----------------------------------------
+   Scott: "more refined and less AI, not redesigned". Only removals:
+   the orbit's guide rings, the pastel icon tiles and arrows on the contact
+   links (now a plain hairline list), and the status dots. Delete this block
+   to undo. Eyebrows and headline full stops were trimmed in index.html. */
+.product-arrangement::before,
+.product-arrangement::after { display: none; }
+
+.connect-grid { gap: 0 36px; }
+.connect-card {
+  grid-template-columns: 1fr;
+  min-height: 0;
+  padding: 18px 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+}
+.connect-card:hover { transform: none; background: transparent; box-shadow: none; }
+.connect-card:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+.connect-card strong { font-size: 15px; font-weight: 500; }
+.connect-card > span { display: none; }
+
+.trip-pill i, .meta-line .pulse-dot { display: none; }
+/* Ingredient chips were centred on mobile while the note chip under them sat
+   left, so each card had two alignments. One edge. */
+.range-ings { justify-content: flex-start !important; }
